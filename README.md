@@ -1,6 +1,8 @@
-# Continental C Garden — QR Food Menu
+# C Garden — QR Food Menu
 
 A single-page, mobile-friendly **food menu website** plus a **QR code** that links straight to it. Scan the QR with any phone camera and the menu opens — no app needed.
+
+> The menu currently has **3 placeholder dishes**. Send me the real food details anytime and I'll swap them in — the QR code does **not** change.
 
 ## What's here
 
