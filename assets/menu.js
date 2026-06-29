@@ -9,171 +9,17 @@
 
 const MENU = [
   {
-    id: "cocktails",
-    title: { mn: "Коктейль", en: "Cocktails" },
-    groups: [
-      { label: { mn: "Барменийн онцлох", en: "Bartender Special" }, items: [
-        { n: "GinX", p: 40000 },
-        { n: "Ocean Sip", p: 40000 },
-      ]},
-      { label: { mn: "Сонгодог", en: "Classic" }, items: [
-        { n: "Cosmopolitan", p: 35000 },
-        { n: "Aperol Spritz", p: 35000 },
-        { n: "Negroni", p: 35000 },
-        { n: "Blue Gin & Tonic", p: 35000 },
-      ]},
-    ],
-  },
-  {
     id: "beer",
     title: { mn: "Шар айраг", en: "Beer" },
     groups: [
       { label: { mn: "Савнаас", en: "Draft" }, meta: { mn: "0.5Л", en: "0.5L" }, items: [
-        { n: "Heineken", p: 16500 },
-        { n: "Altan Gobi", p: 16000 },
-        { n: "Tiger", p: 15000 },
         { n: "Сэнгүр", p: 15000 },
         { n: "Super Lite", p: 15000 },
+        { n: "Altan Gobi", p: 16000 },
       ]},
       { label: { mn: "Лонх ба лааз", en: "Bottle & Can" }, items: [
-        { n: "Heineken", note: "Can · 0.5L", p: 15000 },
-        { n: "Heineken", note: "Bottle · 0.5L", p: 15000 },
-        { n: "Heineken", note: "Bottle · 0.33L", p: 12000 },
-        { n: "Tiger", note: "Can · 0.5L", p: 15000 },
-        { n: "Altan Gobi", note: "Can · 0.33L", p: 12000 },
-        { n: "Сэнгүр White", note: "Can · 0.5L", p: 12000 },
-        { n: "Сэнгүр Radler", note: "Can · 0.33L", p: 10000 },
-        { n: "Kaltenberg", note: "Can · 0.5L", p: 18000 },
-      ]},
-    ],
-  },
-  {
-    id: "wine",
-    title: { mn: "Дарс ба шампанск", en: "Wine & Champagne" },
-    groups: [
-      { label: { mn: "House Wine", en: "House Wine" }, meta: { mn: "Хундага / Лонх", en: "Glass / Bottle" }, items: [
-        { n: "Maison Castel Merlot", p: 20000, p2: 99000 },
-        { n: "Maison Castel Chardonnay", p: 20000, p2: 99000 },
-      ]},
-      { label: { mn: "Улаан", en: "Red" }, items: [
-        { n: "Casillero del Diablo", note: "Cabernet Sauvignon", p: 190000 },
-        { n: "Saint Émilion", p: 180000 },
-        { n: "Château Méric Ferrande", note: "Red", p: 390000 },
-      ]},
-      { label: { mn: "Цагаан", en: "White" }, items: [
-        { n: "Château Méric Ferrande", note: "White", p: 390000 },
-      ]},
-      { label: { mn: "Розе", en: "Rosé" }, items: [
-        { n: "Maison Castel Rosé d'Anjou", p: 150000 },
-      ]},
-      { label: { mn: "Sparkling Wine", en: "Sparkling Wine" }, items: [
-        { n: "Cinzano Prosecco", p: 130000 },
-      ]},
-    ],
-  },
-  {
-    id: "set",
-    title: { mn: "Сэт цэс", en: "Set Menu" },
-    groups: [
-      { label: { mn: "Сэт 1", en: "Set 1" }, total: 1000000,
-        foot: { mn: "Найзуудаараа тухлах ширээ", en: "A cosy table to enjoy with friends" },
-        items: [
-        { n: { mn: "Chinggis Khan архи", en: "Chinggis Khan Vodka" }, qty: 1 },
-        { n: { mn: "Шорлог 3 төрөл (үхэр · хонь · тахиа)", en: "Skewers — 3 kinds (beef · lamb · chicken)" }, qty: 3 },
-        { n: { mn: "Тоник", en: "Tonic" }, qty: 5 },
-        { n: { mn: "Тэрэлж рашаан", en: "Terelj water" }, qty: 10 },
-        { n: { mn: "Alkaline ус", en: "Alkaline water" }, qty: 10 },
-      ]},
-      { label: { mn: "Сэт 2", en: "Set 2" }, total: 900000,
-        foot: { mn: "Найзуудаараа тухлах ширээ", en: "A cosy table to enjoy with friends" },
-        items: [
-        { n: { mn: "Wild Turkey виски", en: "Wild Turkey Whisky" }, qty: 1 },
-        { n: { mn: "Зайдасны цуглуулга", en: "Sausage Platter" }, qty: 1 },
-        { n: { mn: "Ginger Ale", en: "Ginger Ale" }, qty: 5 },
-        { n: { mn: "Сэлэнгэ рашаан", en: "Selenge water" }, qty: 10 },
-        { n: { mn: "Alkaline ус", en: "Alkaline water" }, qty: 10 },
-      ]},
-    ],
-  },
-  {
-    id: "grill",
-    title: { mn: "Грилл", en: "Grill" },
-    groups: [
-      { label: { mn: "Шорлог", en: "Skewers" }, items: [
-        { n: { mn: "Үхэр", en: "Beef" }, p: 40000 },
-        { n: { mn: "Хонь", en: "Lamb" }, p: 36000 },
-        { n: { mn: "Тахиа", en: "Chicken" }, p: 30000 },
-      ]},
-      { label: { mn: "Хоол", en: "Plates" }, items: [
-        { n: { mn: "Үхрийн махан бургер", en: "Beef Burger" }, p: 28000 },
-        { n: { mn: "Зайдасны цуглуулга", en: "Sausage Platter" }, p: 120000 },
-        { n: { mn: "Шарсан төмс", en: "Fries" }, p: 15000 },
-        { n: { mn: "Зайдастай төмс", en: "Fries with Sausage" }, p: 21000 },
-      ]},
-    ],
-  },
-  {
-    id: "spirits",
-    title: { mn: "Хатуу архи", en: "Spirits" },
-    meta: { mn: "Лонх · 0.7Л", en: "Bottle · 0.7L" },
-    groups: [
-      { label: { mn: "Архи (Vodka)", en: "Vodka" }, items: [
-        { n: "Evok", p: 155000 },
-        { n: "Chinggis Khan", p: 475000 },
-        { n: "Soyombo", p: 193000 },
-        { n: "Eden", p: 95000 },
-      ]},
-      { label: { mn: "Жин", en: "Gin" }, items: [
-        { n: "Founder", note: "43%", p: 187000 },
-        { n: "Bull Dog", note: "0.75L", p: 300000 },
-        { n: "Barrister Pink", p: 170000 },
-      ]},
-      { label: { mn: "Текила", en: "Tequila" }, items: [
-        { n: "Espolòn", note: "Blanco / Reposado", p: 350000 },
-      ]},
-      { label: { mn: "Виски", en: "Whisky" }, items: [
-        { n: "Glengrant", note: "12 Y.O", p: 610000 },
-        { n: "Wild Turkey", note: "0.75L", p: 320000 },
-        { n: "Tenjaku", p: 370000 },
-      ]},
-      { label: { mn: "Аперитив ба ликёр", en: "Aperitif & Liqueur" }, items: [
-        { n: "Aperol", p: 180000 },
-        { n: "Jägermeister", p: 230000 },
-        { n: "Cinzano", note: "Rosso / Bianco", p: 120000 },
-      ]},
-      { label: { mn: "Soju", en: "Soju" }, meta: { mn: "0.38Л", en: "0.38L" }, items: [
-        { n: "Soju Original", p: 17000 },
-        { n: "Soju Peach", p: 17000 },
-        { n: "Soju Yogurt", p: 17000 },
-      ]},
-    ],
-  },
-  {
-    id: "coffee",
-    title: { mn: "Кофе ба цай", en: "Coffee & Tea" },
-    groups: [
-      { label: { mn: "Кофе", en: "Coffee" }, items: [
-        { n: "Single Espresso", note: "30ml", p: 6000 },
-        { n: "Double Espresso", note: "60ml", p: 8500 },
-        { n: "Americano", note: "250ml", p: 10000 },
-        { n: "Latte", note: "300ml", p: 10500 },
-        { n: "Vanilla Latte", note: "300ml", p: 11000 },
-      ]},
-      { label: { mn: "Халуун ундаа", en: "Hot Drinks" }, items: [
-        { n: "Earl Grey Tea", p: 14000 },
-        { n: "Lemon Water", p: 4000 },
-      ]},
-      { label: { mn: "Хүйтэн ундаа", en: "Cold Drinks" }, items: [
-        { n: "Vanilla Milkshake", p: 16000 },
-        { n: "Chocolate Milkshake", p: 16000 },
-        { n: "Strawberry Milkshake", p: 16000 },
-        { n: "Mango Smoothie", p: 18000 },
-        { n: "Orange Banana Smoothie", p: 18000 },
-      ]},
-      { label: { mn: "Моктейл", en: "Mocktails" }, items: [
-        { n: "Kiwi Lemonade", p: 16000 },
-        { n: "Strawberry Lemonade", p: 16000 },
-        { n: "Peach Ice Tea", p: 16000 },
+        { n: "Asahi", note: "0.33L", p: 16000 },
+        { n: "Heineken", note: "0.33L", p: 12000 },
       ]},
     ],
   },
@@ -181,23 +27,10 @@ const MENU = [
     id: "soft",
     title: { mn: "Зөөлөн ундаа", en: "Soft Drinks" },
     groups: [
-      { label: { mn: "Оргилуун", en: "Orgiluun" }, meta: { mn: "0.33 лааз", en: "0.33 Can" }, items: [
-        { n: "Lemon Lime", p: 5000 },
-        { n: "Tropical Fruit", p: 5000 },
-        { n: "Strawberry / Watermelon", p: 5000 },
-      ]},
-      { label: { mn: "Монгол рашаан", en: "Mongolian Mineral" }, meta: { mn: "0.33 лааз", en: "0.33 Can" }, items: [
-        { n: "Terelj", p: 7000 },
-        { n: "Selenge", p: 7000 },
-      ]},
-      { label: { mn: "Тоник ба сода", en: "Tonic & Soda" }, meta: { mn: "Оргилуун 0.33", en: "Orgiluun 0.33" }, items: [
-        { n: "Tonic / Soda", p: 6000 },
-        { n: "Ginger Ale", p: 6000 },
-      ]},
-      { label: { mn: "Жүүс ба ус", en: "Juice & Water" }, items: [
-        { n: "Frutta", note: "1L", p: 14000 },
-        { n: "Frutta", note: "0.25L", p: 7500 },
-        { n: "Alkaline", note: "0.5L PET", p: 5000 },
+      { label: { mn: "Ундаа ба ус", en: "Drinks & Water" }, items: [
+        { n: "Cola", p: 7500 },
+        { n: "Sprite", p: 7500 },
+        { n: "Bonaqua", p: 5000 },
       ]},
     ],
   },
