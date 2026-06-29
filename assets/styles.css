@@ -139,6 +139,11 @@ main{max-width:980px;margin:0 auto;padding:18px 18px 80px}
 .group.set .item{padding:9px 8px}
 .group.set .item:hover{background:transparent}
 .qty{font-family:var(--sans);font-size:14px;color:var(--emerald-2);font-weight:600}
+.set-foot{
+  margin:8px 8px 2px;padding-top:10px;
+  border-top:1px solid var(--line);
+  color:var(--gold);font-style:italic;font-size:13.5px;
+}
 .group-head{
   display:flex;align-items:baseline;justify-content:space-between;gap:12px;
   margin:0 12px 4px;

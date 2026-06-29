@@ -1,0 +1,57 @@
+# C Garden — Үндсэн эх хувь (MASTER) меню
+
+Энэ бол **бүрэн (full) үндсэн меню**-гийн эх хувь. Өдөр тутмын үйлчилгээнд
+зарим зүйлийг түр хасаж болох ба дараа нь бүтэн менюгээ **хормын дотор сэргээх**
+боломжтой байхаар бэлдсэн.
+
+## 📦 Хаана хадгалагдсан бэ
+
+1. **`assets/menu.js`** — одоо ажиллаж буй (live) меню. Өдрийн хасалтыг ЭНД хийнэ.
+2. **`assets/menu.full.js`** — бүтэн үндсэн менюгийн **өөрчлөгдөшгүй нөөц хувь**.
+   Үүнийг өдөр тутам бүү засаарай — энэ бол сэргээх эх сурвалж.
+3. **Git tag `menu-master-v1`** — бүтэн менюгийн агшин (snapshot). Git түүхэнд
+   үргэлж хадгалагдана.
+
+---
+
+## ✂️ Өнөөдөр: цөөн зүйлээр үйлчлэх (хасалт хийх)
+
+`assets/menu.js` доторх `MENU` дотроос үйлчлэхгүй зүйл/бүлгийг устгана
+(эсвэл мөрийг нь `//`-оор тайлбар болгоно). Хадгалаад push:
+
+```bash
+git add assets/menu.js && git commit -m "Today: trimmed menu" && git push
+```
+
+~1 минутын дотор сайт шинэчлэгдэнэ. **`menu.full.js`-г бүү гар.**
+
+---
+
+## ↩️ Дараа: бүтэн менюг ШУУД сэргээх
+
+Дараах хоёр аргын аль нэгээр (хоёулаа адил үр дүн):
+
+**А. Нөөц хувиас (хамгийн хялбар):**
+```bash
+cp assets/menu.full.js assets/menu.js
+git add assets/menu.js && git commit -m "Restore full master menu" && git push
+```
+
+**Б. Git tag-аас:**
+```bash
+git checkout menu-master-v1 -- assets/menu.js
+git add assets/menu.js && git commit -m "Restore full master menu" && git push
+```
+
+Сэргээсний дараа `index.html` доторх `?v=` дугаарыг нэгээр нэмбэл (жнь `v=6`→`v=7`)
+бүх утсанд кэшгүйгээр шинэ хувилбар шууд харагдана.
+
+---
+
+## 🔖 Шинэ үндсэн хувь болгох (ирээдүйд)
+
+Хэрэв бүтэн менюд өөрчлөлт оруулбал шинэ master болгож:
+```bash
+cp assets/menu.js assets/menu.full.js
+git add -A && git commit -m "Update master menu" && git tag menu-master-v2 && git push --tags
+```
