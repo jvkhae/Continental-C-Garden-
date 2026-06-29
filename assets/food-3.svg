@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 375" role="img" aria-label="Salmon tartare">
+  <defs>
+    <linearGradient id="bg3" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0f2419"/><stop offset="1" stop-color="#07140d"/>
+    </linearGradient>
+    <linearGradient id="salmon" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ff9a76"/><stop offset="1" stop-color="#e8693f"/>
+    </linearGradient>
+  </defs>
+  <rect width="500" height="375" fill="url(#bg3)"/>
+  <!-- plate -->
+  <circle cx="250" cy="190" r="130" fill="#0c1d15" stroke="rgba(255,255,255,.12)" stroke-width="2"/>
+  <circle cx="250" cy="190" r="95" fill="#0f2419" stroke="rgba(217,194,122,.3)" stroke-width="2"/>
+  <!-- tartare mound -->
+  <ellipse cx="250" cy="205" rx="62" ry="20" fill="#0a160f"/>
+  <ellipse cx="250" cy="190" rx="58" ry="34" fill="url(#salmon)" stroke="#c4502a" stroke-width="2"/>
+  <!-- diced texture -->
+  <g fill="#ffb597" opacity=".7">
+    <rect x="222" y="176" width="13" height="13" rx="2" transform="rotate(12 228 182)"/>
+    <rect x="244" y="170" width="13" height="13" rx="2" transform="rotate(-8 250 176)"/>
+    <rect x="266" y="178" width="13" height="13" rx="2" transform="rotate(18 272 184)"/>
+    <rect x="236" y="192" width="13" height="13" rx="2"/>
+    <rect x="258" y="194" width="13" height="13" rx="2" transform="rotate(-12 264 200)"/>
+  </g>
+  <!-- herb + lime -->
+  <circle cx="250" cy="166" r="5" fill="#2fd693"/>
+  <path d="M150 250 q12 -14 24 0" fill="none" stroke="#2fd693" stroke-width="3"/>
+  <circle cx="332" cy="238" r="14" fill="#9ad36a" stroke="#5e8c34" stroke-width="2"/>
+</svg>
