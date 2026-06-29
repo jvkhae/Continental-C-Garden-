@@ -16,19 +16,20 @@ QR код яг **энэ хаяг** руу заана.
 
 ---
 
-## 🚀 Ажиллуулах (1 удаагийн алхам)
+## 🚀 Ажиллуулах — GitHub Pages асаах (1 удаа, ~1 минут)
 
-> Энэ repo одоо **private**. GitHub Pages-ийн үнэгүй хувилбар private repo дээр
-> ажиллахгүй тул менюг нийтлэхийн тулд repo-г **public** болгоно:
+Repo одоо **public** тул дараах байдлаар Pages-ийг асаахад л меню амьд болно:
 
-1. GitHub → repo → **Settings** → доош гүйгээд **Danger Zone** → **Change visibility** → **Make public**.
-2. Дараа нь `Deploy C Garden menu` workflow автоматаар ажиллаж GitHub Pages-ийг
-   **өөрөө асааж** (enablement: true) сайтыг нийтэлнэ.
-3. `https://jvkhae.github.io/Continental-C-Garden-/` идэвхжинэ → QR шууд ажиллана.
+1. GitHub → repo → **Settings** → зүүн талд **Pages**.
+2. **Build and deployment** → **Source**: **Deploy from a branch** сонгох.
+3. **Branch**: **`claude/relaxed-gauss-s2wt1x`** , фолдер: **`/ (root)`** → **Save**.
+4. ~1 минут хүлээгээд `https://jvkhae.github.io/Continental-C-Garden-/` нээгдэнэ → **QR шууд ажиллана**.
 
-> ⚠️ Анхаар: repo-г public болгоход энэ repo доторх **бүх файл** (санхүү, маркетинг г.м.)
-> нийтэд ил болохыг санаарай. Хэрэв тэдгээрийг нуухыг хүсвэл менюг тусдаа public repo-д
-> зөөвөл дээр — хэлээрэй, шилжүүлж өгье.
+> Энэ branch дээр C Garden меню (хоолны зураг, МН/EN, Velvet загвар) байрладаг.
+> Pages-ийг ямар ч branch-аас үйлчлүүлж болно — голдуу `/ (root)` фолдерыг сонгоно.
+>
+> Тэмдэглэл: GitHub Actions автомат deploy ажиллахгүй (token-д Pages-ийг анх
+> асаах эрх байдаггүй), тиймээс дээрх "Deploy from a branch" арга хамгийн найдвартай.
 
 ---
 
