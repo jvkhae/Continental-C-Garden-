@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#1f3b2c" />
+  <title>Continental C Garden — Menu</title>
+  <meta name="description" content="The food menu for Continental C Garden." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f7f4ee;
+      --card: #fffdf9;
+      --ink: #23291f;
+      --muted: #7a7a6f;
+      --accent: #1f3b2c;
+      --gold: #b08d3e;
+      --line: #e7e1d4;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+    .hero {
+      background: var(--accent);
+      color: #f4efe3;
+      text-align: center;
+      padding: 56px 20px 44px;
+      position: relative;
+    }
+    .hero .eyebrow {
+      letter-spacing: .35em;
+      text-transform: uppercase;
+      font-size: .72rem;
+      color: var(--gold);
+      font-weight: 600;
+    }
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 700;
+      font-size: clamp(2.4rem, 7vw, 3.6rem);
+      margin: 10px 0 6px;
+      line-height: 1.05;
+    }
+    .hero p { color: #cdd6c8; font-size: .98rem; }
+    .hero .hours {
+      margin-top: 18px;
+      font-size: .85rem;
+      color: #aebaa6;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(247,244,238,.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 12px 16px;
+      scrollbar-width: none;
+    }
+    nav::-webkit-scrollbar { display: none; }
+    nav a {
+      white-space: nowrap;
+      text-decoration: none;
+      color: var(--accent);
+      font-weight: 600;
+      font-size: .82rem;
+      padding: 7px 14px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--card);
+    }
+    nav a:active { background: var(--accent); color: #fff; }
+
+    main { max-width: 720px; margin: 0 auto; padding: 28px 20px 64px; }
+    section { margin-bottom: 38px; }
+    .section-head {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+    .section-head h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.9rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+    .section-head .rule { flex: 1; height: 1px; background: var(--line); }
+
+    .item {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 16px 18px;
+      margin-bottom: 12px;
+    }
+    .item-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+    }
+    .item-name { font-weight: 600; font-size: 1.02rem; }
+    .item-price {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 700;
+      font-size: 1.15rem;
+      color: var(--gold);
+      white-space: nowrap;
+    }
+    .item-desc { color: var(--muted); font-size: .9rem; margin-top: 4px; }
+    .tags { margin-top: 8px; display: flex; gap: 6px; flex-wrap: wrap; }
+    .tag {
+      font-size: .68rem;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: #eef1ea;
+      border-radius: 6px;
+      padding: 2px 7px;
+      font-weight: 600;
+    }
+
+    footer {
+      text-align: center;
+      padding: 32px 20px 48px;
+      color: var(--muted);
+      font-size: .82rem;
+      border-top: 1px solid var(--line);
+    }
+    footer strong { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="eyebrow">Continental Cuisine</div>
+    <h1>Continental C Garden</h1>
+    <p>Garden-fresh plates &amp; classic comfort</p>
+    <div class="hours">Open daily · 11:00 – 22:00</div>
+  </header>
+
+  <nav>
+    <a href="#starters">Starters</a>
+    <a href="#mains">Mains</a>
+    <a href="#garden">Garden &amp; Sides</a>
+    <a href="#desserts">Desserts</a>
+    <a href="#drinks">Drinks</a>
+  </nav>
+
+  <main>
+    <section id="starters">
+      <div class="section-head"><h2>Starters</h2><span class="rule"></span></div>
+
+      <div class="item">
+        <div class="item-top"><span class="item-name">Garden Bruschetta</span><span class="item-price">$8</span></div>
+        <div class="item-desc">Grilled sourdough, vine tomatoes, basil &amp; aged olive oil.</div>
+        <div class="tags"><span class="tag">Vegetarian</span></div>
+      </div>
+      <div class="item">
+        <div class="item-top"><span class="item-name">Creamy Mushroom Soup</span><span class="item-price">$7</span></div>
+        <div class="item-desc">Wild mushrooms, thyme cream, toasted seeds.</div>
+        <div class="tags"><span class="tag">Vegetarian</span></div>
+      </div>
+      <div class="item">
+        <div class="item-top"><span class="item-name">Crispy Calamari</span><span class="item-price">$11</span></div>
+        <div class="item-desc">Lightly fried, lemon aioli, fresh herbs.</div>
+      </div>
+    </section>
+
+    <section id="mains">
+      <div class="section-head"><h2>Mains</h2><span class="rule"></span></div>
+
+      <div class="item">
+        <div class="item-top"><span class="item-name">Grilled Ribeye Steak</span><span class="item-price">$26</span></div>
+        <div class="item-desc">280g ribeye, peppercorn sauce, rosemary potatoes.</div>
+      </div>
+      <div class="item">
+        <div class="item-top"><span class="item-name">Pan-Seared Salmon</span><span class="item-price">$22</span></div>
+        <div class="item-desc">Atlantic salmon, lemon butter, seasonal greens.</div>
+      </div>
+      <div class="item">
+        <div class="item-top"><span class="item-name">Roast Chicken Supreme</span><span class="item-price">$19</span></div>
+        <div class="item-desc">Herb-marinated breast, creamed corn, jus.</div>
+      </div>
+      <div class="item">
+        <div class="item-top"><span class="item-name">Wild Mushroom Risotto</span><span class="item-price">$17</span></div>
+        <div class="item-desc">Arborio rice, parmesan, truffle oil.</div>
+        <div class="tags"><span class="tag">Vegetarian</span></div>
+      </div>
+      <div class="item">
+        <div class="item-top"><span class="item-name">Classic Beef Burger</span><span class="item-price">$15</span></div>
+        <div class="item-desc">Aged cheddar, smoked bacon, garden relish, fries.</div>
+      </div>
+    </section>
+
+    <section id="garden">
+      <div class="section-head"><h2>Garden &amp; Sides</h2><span class="rule"></span></div>
+
+      <div class="item">
+        <div class="item-top"><span class="item-name">Continental Garden Salad</span><span class="item-price">$10</span></div>
+        <div class="item-desc">Leaves, avocado, cucumber, citrus dressing.</div>
+        <div class="tags"><span class="tag">Vegan</span></div>
+      </div>
+      <div class="item">
+        <div class="item-top"><span class="item-name">Truffle Fries</span><span class="item-price">$6</span></div>
+        <div class="item-desc">Hand-cut, parmesan, truffle oil.</div>
+        <div class="tags"><span class="tag">Vegetarian</span></div>
+      </div>
+      <div class="item">
+        <div class="item-top"><span class="item-name">Grilled Seasonal Vegetables</span><span class="item-price">$6</span></div>
+        <div class="item-desc">Charred greens, olive oil, sea salt.</div>
+        <div class="tags"><span class="tag">Vegan</span></div>
+      </div>
+    </section>
+
+    <section id="desserts">
+      <div class="section-head"><h2>Desserts</h2><span class="rule"></span></div>
+
+      <div class="item">
+        <div class="item-top"><span class="item-name">Vanilla Crème Brûlée</span><span class="item-price">$8</span></div>
+        <div class="item-desc">Madagascan vanilla, caramelized sugar crust.</div>
+      </div>
+      <div class="item">
+        <div class="item-top"><span class="item-name">Dark Chocolate Fondant</span><span class="item-price">$9</span></div>
+        <div class="item-desc">Molten centre, vanilla bean ice cream.</div>
+      </div>
+      <div class="item">
+        <div class="item-top"><span class="item-name">Seasonal Fruit Tart</span><span class="item-price">$7</span></div>
+        <div class="item-desc">Almond crust, custard, fresh fruit.</div>
+      </div>
+    </section>
+
+    <section id="drinks">
+      <div class="section-head"><h2>Drinks</h2><span class="rule"></span></div>
+
+      <div class="item">
+        <div class="item-top"><span class="item-name">Fresh Lemonade</span><span class="item-price">$5</span></div>
+        <div class="item-desc">House-pressed, mint, lightly sweetened.</div>
+      </div>
+      <div class="item">
+        <div class="item-top"><span class="item-name">Garden Iced Tea</span><span class="item-price">$4</span></div>
+        <div class="item-desc">Peach &amp; hibiscus, served chilled.</div>
+      </div>
+      <div class="item">
+        <div class="item-top"><span class="item-name">Espresso / Cappuccino</span><span class="item-price">$4</span></div>
+        <div class="item-desc">Single-origin roast.</div>
+      </div>
+      <div class="item">
+        <div class="item-top"><span class="item-name">House Red / White Wine</span><span class="item-price">$7</span></div>
+        <div class="item-desc">Glass. Ask your server for today's selection.</div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <strong>Continental C Garden</strong><br />
+    Prices in USD · Please inform staff of any allergies.<br />
+    Menu updated June 2026.
+  </footer>
+</body>
+</html>
