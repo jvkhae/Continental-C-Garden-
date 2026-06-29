@@ -8,9 +8,8 @@
 
 1. **`assets/menu.js`** — одоо ажиллаж буй (live) меню. Өдрийн хасалтыг ЭНД хийнэ.
 2. **`assets/menu.full.js`** — бүтэн үндсэн менюгийн **өөрчлөгдөшгүй нөөц хувь**.
-   Үүнийг өдөр тутам бүү засаарай — энэ бол сэргээх эх сурвалж.
-3. **Git tag `menu-master-v1`** — бүтэн менюгийн агшин (snapshot). Git түүхэнд
-   үргэлж хадгалагдана.
+   Үүнийг өдөр тутам бүү засаарай — энэ бол сэргээх гол эх сурвалж.
+3. **Git түүх (history)** — өөрчлөлт бүр commit хэлбэрээр үргэлж хадгалагдана.
 
 ---
 
@@ -31,15 +30,9 @@ git add assets/menu.js && git commit -m "Today: trimmed menu" && git push
 
 Дараах хоёр аргын аль нэгээр (хоёулаа адил үр дүн):
 
-**А. Нөөц хувиас (хамгийн хялбар):**
+**Нөөц хувиас (хамгийн хялбар, найдвартай):**
 ```bash
 cp assets/menu.full.js assets/menu.js
-git add assets/menu.js && git commit -m "Restore full master menu" && git push
-```
-
-**Б. Git tag-аас:**
-```bash
-git checkout menu-master-v1 -- assets/menu.js
 git add assets/menu.js && git commit -m "Restore full master menu" && git push
 ```
 
@@ -53,5 +46,5 @@ git add assets/menu.js && git commit -m "Restore full master menu" && git push
 Хэрэв бүтэн менюд өөрчлөлт оруулбал шинэ master болгож:
 ```bash
 cp assets/menu.js assets/menu.full.js
-git add -A && git commit -m "Update master menu" && git tag menu-master-v2 && git push --tags
+git add -A && git commit -m "Update master menu" && git push
 ```
