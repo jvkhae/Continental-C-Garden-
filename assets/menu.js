@@ -72,6 +72,44 @@ const MENU = [
     ],
   },
   {
+    id: "set",
+    title: { mn: "Сэт цэс", en: "Set Menu" },
+    note: { mn: "Үнэ нь багтсан бүх зүйлийн нийлбэр.", en: "Price is the sum of all included items." },
+    groups: [
+      { label: { mn: "Сэт 1", en: "Set 1" }, total: 731000, items: [
+        { n: { mn: "Chinggis Khan архи", en: "Chinggis Khan Vodka" }, qty: 1 },
+        { n: { mn: "Шорлог 3 төрөл (үхэр · хони · тахиа)", en: "Skewers — 3 kinds (beef · lamb · chicken)" }, qty: 3 },
+        { n: { mn: "Тоник", en: "Tonic" }, qty: 5 },
+        { n: { mn: "Тэрэлж рашаан", en: "Terelj water" }, qty: 10 },
+        { n: { mn: "Alkaline ус", en: "Alkaline water" }, qty: 10 },
+      ]},
+      { label: { mn: "Сэт 2", en: "Set 2" }, total: 590000, items: [
+        { n: { mn: "Wild Turkey виски", en: "Wild Turkey Whisky" }, qty: 1 },
+        { n: { mn: "Зайдасны цуглуулга", en: "Sausage Platter" }, qty: 1 },
+        { n: { mn: "Ginger Ale", en: "Ginger Ale" }, qty: 5 },
+        { n: { mn: "Сэленге рашаан", en: "Selenge water" }, qty: 10 },
+        { n: { mn: "Alkaline ус", en: "Alkaline water" }, qty: 10 },
+      ]},
+    ],
+  },
+  {
+    id: "grill",
+    title: { mn: "Грилл", en: "Grill" },
+    groups: [
+      { label: { mn: "Шорлог", en: "Skewers" }, items: [
+        { n: { mn: "Үхэр", en: "Beef" }, p: 40000 },
+        { n: { mn: "Хони", en: "Lamb" }, p: 36000 },
+        { n: { mn: "Тахиа", en: "Chicken" }, p: 30000 },
+      ]},
+      { label: { mn: "Хоол", en: "Plates" }, items: [
+        { n: { mn: "Үхрийн махан бургер", en: "Beef Burger" }, p: 28000 },
+        { n: { mn: "Зайдасны цуглуулга", en: "Sausage Platter" }, p: 120000 },
+        { n: { mn: "Шарсан төмс", en: "Fries" }, p: 15000 },
+        { n: { mn: "Зайдастай төмс", en: "Fries with Sausage" }, p: 21000 },
+      ]},
+    ],
+  },
+  {
     id: "spirits",
     title: { mn: "Хатуу архи", en: "Spirits" },
     meta: { mn: "Лонх · 0.7Л", en: "Bottle · 0.7L" },
@@ -185,24 +223,30 @@ function render(){
     sec.className = "cat fade-up";
     sec.id = cat.id;
     const catMeta = cat.meta ? `<span class="cat-meta">${cat.meta[lang]}</span>` : "";
-    sec.innerHTML = `<div class="cat-head"><h2>${cat.title[lang]}</h2>${catMeta}</div>`;
+    const catNote = cat.note ? `<p class="cat-note">${cat.note[lang]}</p>` : "";
+    sec.innerHTML = `<div class="cat-head"><h2>${cat.title[lang]}</h2>${catMeta}</div>${catNote}`;
 
     cat.groups.forEach(g => {
       const grp = document.createElement("div");
-      grp.className = "group";
+      grp.className = "group" + (g.total != null ? " set" : "");
       const gmeta = g.meta ? `<span class="gmeta">${g.meta[lang]}</span>` : "";
+      const gtotal = g.total != null ? `<span class="set-price">${num(g.total)}₮</span>` : "";
       let rows = "";
       g.items.forEach(it => {
-        const note = it.note ? ` <span class="note">${it.note}</span>` : "";
-        const thumb = it.img ? `<img class="thumb" src="${it.img}" alt="${it.n}" loading="lazy">` : "";
+        const nm = typeof it.n === "string" ? it.n : it.n[lang];
+        const noteTxt = it.note ? (typeof it.note === "string" ? it.note : it.note[lang]) : "";
+        const note = noteTxt ? ` <span class="note">${noteTxt}</span>` : "";
+        const thumb = it.img ? `<img class="thumb" src="${it.img}" alt="${nm}" loading="lazy">` : "";
+        const right = it.p != null ? price(it)
+                    : (it.qty != null ? `<span class="qty">×${it.qty}</span>` : "");
         rows += `
           <div class="item${it.img ? " has-img" : ""}">
             ${thumb}
-            <div class="info"><span class="name">${it.n}</span>${note}</div>
-            <div class="price">${price(it)}</div>
+            <div class="info"><span class="name">${nm}</span>${note}</div>
+            <div class="price">${right}</div>
           </div>`;
       });
-      grp.innerHTML = `<div class="group-head"><span class="glabel">${g.label[lang]}</span>${gmeta}</div><div class="items">${rows}</div>`;
+      grp.innerHTML = `<div class="group-head"><span class="glabel">${g.label[lang]}</span>${gmeta}${gtotal}</div><div class="items">${rows}</div>`;
       sec.appendChild(grp);
     });
     main.appendChild(sec);
