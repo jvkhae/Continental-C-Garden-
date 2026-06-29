@@ -123,6 +123,12 @@ main{max-width:980px;margin:0 auto;padding:18px 18px 80px}
   transition:background .2s;
 }
 .item:hover{background:rgba(47,214,147,.05)}
+.item.has-img{grid-template-columns:84px 1fr auto}
+.item .thumb{
+  width:84px;height:64px;border-radius:10px;object-fit:cover;
+  border:1px solid var(--line);background:#0c1d15;
+  box-shadow:0 6px 16px rgba(0,0,0,.4);
+}
 .item .name{font-weight:600;font-size:17px}
 .item .badge{
   font-size:10px;font-weight:700;letter-spacing:.08em;

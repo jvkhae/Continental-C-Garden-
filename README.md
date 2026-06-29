@@ -1,9 +1,8 @@
-# DAZZLE Lounge — QR Menu
+# C Garden — Food Menu (QR)
 
-Тансаг, харанхуй, гламур (**dark luxe + emerald**) загвартай, **Монгол + Англи** хосолсон,
-бүрэн ажиллагаатай **дижитал меню вэбсайт** + түүн рүү шууд холбогддог **QR код**.
-
-> Сонгосон чиглэл: **Velvet** — гүн ногоон gradient, тансаг, картан мэдрэмж.
+Тансаг dark-luxe + emerald загвартай, **Монгол + Англи** хосолсон, бүрэн ажиллагаатай
+**дижитал меню вэбсайт** + түүн рүү шууд холбогддог **QR код**. Дурын утас, дурын
+браузер (Chrome, Safari, …)-аас ажиллана.
 
 ---
 
@@ -13,20 +12,23 @@
 https://jvkhae.github.io/Continental-C-Garden-/
 ```
 
-QR код яг **энэ хаяг** руу заадаг. QR-г уншуулахад шууд меню нээгдэнэ.
+QR код яг **энэ хаяг** руу заана.
 
 ---
 
-## 🚀 Хэрхэн ажиллуулах вэ (1 удаагийн тохиргоо)
+## 🚀 Ажиллуулах (1 удаагийн алхам)
 
-QR ажиллахын тулд меню интернэтэд байрлах ёстой. GitHub Pages-ийг асаахад л болно:
+> Энэ repo одоо **private**. GitHub Pages-ийн үнэгүй хувилбар private repo дээр
+> ажиллахгүй тул менюг нийтлэхийн тулд repo-г **public** болгоно:
 
-1. GitHub дээр энэ repo → **Settings** → **Pages**.
-2. **Build and deployment** → **Source** хэсэгт **GitHub Actions** сонгох.
-3. Дуусаад хүлээнэ — `Deploy DAZZLE menu` workflow автоматаар ажиллаж сайтыг нийтэлнэ.
-4. `https://jvkhae.github.io/Continental-C-Garden-/` хаяг идэвхжинэ → QR шууд ажиллана.
+1. GitHub → repo → **Settings** → доош гүйгээд **Danger Zone** → **Change visibility** → **Make public**.
+2. Дараа нь `Deploy C Garden menu` workflow автоматаар ажиллаж GitHub Pages-ийг
+   **өөрөө асааж** (enablement: true) сайтыг нийтэлнэ.
+3. `https://jvkhae.github.io/Continental-C-Garden-/` идэвхжинэ → QR шууд ажиллана.
 
-> Дараа нь `claude/relaxed-gauss-s2wt1x` эсвэл `main` branch руу push хийх бүрт автоматаар дахин deploy хийгдэнэ.
+> ⚠️ Анхаар: repo-г public болгоход энэ repo доторх **бүх файл** (санхүү, маркетинг г.м.)
+> нийтэд ил болохыг санаарай. Хэрэв тэдгээрийг нуухыг хүсвэл менюг тусдаа public repo-д
+> зөөвөл дээр — хэлээрэй, шилжүүлж өгье.
 
 ---
 
@@ -35,48 +37,39 @@ QR ажиллахын тулд меню интернэтэд байрлах ёс
 | Файл | Зориулалт |
 |------|-----------|
 | `index.html` | Меню вэбсайт (sticky nav, бүх ангилал, МН/EN сэлгэх) |
-| `assets/menu.js` | **Бүх меню агуулга энд** — нэр, тайлбар, үнэ. Зөвхөн энэ файлыг засна. |
-| `assets/styles.css` | Velvet dark-luxe загвар |
-| `assets/logo.svg` | DAZZLE wordmark (алмаз голдоо) |
+| `assets/menu.js` | **Бүх меню агуулга энд** — нэр, тайлбар, үнэ, зураг |
+| `assets/styles.css` | Dark-luxe emerald загвар |
+| `assets/logo.svg` | C Garden wordmark |
+| `assets/food-1..3.svg` | Хоолны зураг (одоогоор зурсан placeholder) |
 | `qr.html` | Ширээний постер / table tent — QR-тэй, хэвлэхэд бэлэн |
-| `assets/qr.svg` / `assets/qr.png` | Үүсгэсэн QR код (CDN-гүй, найдвартай) |
+| `assets/qr.svg` / `qr.png` | Үүсгэсэн QR код (CDN-гүй, найдвартай) |
 
 ---
 
 ## ✏️ Меню засах
 
-`assets/menu.js` доторх `MENU` массивыг засна. Жишээ:
+`assets/menu.js` доторх `MENU` массивыг засна:
 
 ```js
-{ name:{mn:"Эмералд Мартини", en:"Emerald Martini"},
-  desc:{mn:"Жин, базилик", en:"Gin, basil"},
-  price:28000,                       // зөвхөн тоо — ₮ автоматаар нэмэгдэнэ
-  badge:{mn:"Онц", en:"Signature"} } // нэмэлт, хүсвэл
+{ name:{mn:"Трюфель фри", en:"Truffle Fries"},
+  desc:{mn:"Пармезан", en:"Parmesan"},
+  price:15000,                 // зөвхөн тоо — ₮ автоматаар нэмэгдэнэ
+  img:"assets/food-1.svg" }    // зураг (заавал биш)
 ```
 
-Хадгалаад push хийхэд сайт автоматаар шинэчлэгдэнэ.
+## 🖼️ Жинхэнэ хоолны зураг солих
 
----
+Одоогийн 3 зураг нь зурсан placeholder (энэ орчинд гадны зургийн сайт хаалттай тул).
+Жинхэнэ зургаа `assets/` дотор хийгээд `menu.js`-ийн `img` талбарыг заана. Жишээ:
 
-## 🔁 QR-ийн хаяг өөрчлөгдвөл
-
-Хэрэв өөр домэйн/хаяг ашиглавал QR-г дахин үүсгэнэ:
-
-```bash
-pip install segno
-python - <<'PY'
-import segno
-url = "https://taniih-shine-hayag.example"   # шинэ хаягаа энд
-qr = segno.make(url, error='h')
-qr.save("assets/qr.svg", scale=16, border=4, dark="#0a1f17", light="#ffffff")
-qr.save("assets/qr.png", scale=16, border=4, dark="#0a1f17", light="#ffffff")
-PY
+```js
+img:"assets/truffle-fries.jpg"
 ```
 
-`qr.html` доторх харагдах хаяг (`.url`) болон `index.html`-ийн холбоосыг мөн шинэчилнэ.
+`.jpg`, `.png`, `.webp` бүгд болно. Хадгалаад push хийхэд автоматаар шинэчлэгдэнэ.
 
 ---
 
 ## 🖨️ Хэвлэх
 
-`qr.html`-ийг браузераар нээгээд **Print** (Ctrl/Cmd + P) → постер цагаан дэвсгэр дээр цэвэр хэвлэгдэнэ.
+`qr.html`-ийг браузераар нээж **Print** (Ctrl/Cmd + P) → постер цэвэр хэвлэгдэнэ.

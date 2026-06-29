@@ -50,10 +50,10 @@ const MENU = [
     title:  { mn: "Зууш ба хоол", en: "Snacks & Food" },
     note:   { mn: "Хуваалцахад тохиромжтой", en: "Perfect for sharing" },
     items: [
-      { name:{mn:"Трюфель фри", en:"Truffle Fries"}, desc:{mn:"Пармезан, ургамлын ногоо", en:"Parmesan, herbs"}, price:15000 },
-      { name:{mn:"Бяслагны таваг", en:"Cheese Board"}, desc:{mn:"Сонгомол бяслаг, жимс, чанамал", en:"Curated cheeses, fruit, jam"}, price:32000, badge:{mn:"Хослол", en:"Share"} },
+      { name:{mn:"Трюфель фри", en:"Truffle Fries"}, desc:{mn:"Пармезан, ургамлын ногоо", en:"Parmesan, herbs"}, price:15000, img:"assets/food-1.svg" },
+      { name:{mn:"Бяслагны таваг", en:"Cheese Board"}, desc:{mn:"Сонгомол бяслаг, жимс, чанамал", en:"Curated cheeses, fruit, jam"}, price:32000, badge:{mn:"Хослол", en:"Share"}, img:"assets/food-2.svg" },
       { name:{mn:"Тахианы шарсан далавч", en:"Glazed Chicken Wings"}, desc:{mn:"Зөгийн бал, чили", en:"Honey, chili glaze"}, price:18000 },
-      { name:{mn:"Сламон тартар", en:"Salmon Tartare"}, desc:{mn:"Авокадо, шохой, тост", en:"Avocado, lime, toast"}, price:26000 },
+      { name:{mn:"Сламон тартар", en:"Salmon Tartare"}, desc:{mn:"Авокадо, шохой, тост", en:"Avocado, lime, toast"}, price:26000, img:"assets/food-3.svg" },
       { name:{mn:"Веган боул", en:"Vegan Bowl"}, desc:{mn:"Улирлын ногоо, тахини", en:"Seasonal greens, tahini"}, price:17000, badge:{mn:"Веган", en:"Vegan"} },
     ],
   },
@@ -106,12 +106,14 @@ function render(){
 
     cat.items.forEach(it => {
       const row = document.createElement("div");
-      row.className = "item";
+      row.className = "item" + (it.img ? " has-img" : "");
       const badge = it.badge ? `<span class="badge">${it.badge[lang]}</span>` : "";
       const pn = it.priceNote ? ` <small>/ ${it.priceNote[lang]}</small>` : "";
       const desc = it.desc && it.desc[lang] ? `<div class="desc">${it.desc[lang]}</div>` : "";
+      const thumb = it.img ? `<img class="thumb" src="${it.img}" alt="${it.name[lang]}" loading="lazy">` : "";
       row.innerHTML = `
-        <div><span class="name">${it.name[lang]}</span>${badge}${desc}</div>
+        ${thumb}
+        <div class="info"><span class="name">${it.name[lang]}</span>${badge}${desc}</div>
         <div class="price">${fmt(it.price)}${pn}</div>`;
       wrap.appendChild(row);
     });
@@ -125,6 +127,12 @@ function render(){
 function initObservers(){
   const pills = [...document.querySelectorAll(".pill")];
   const secs = [...document.querySelectorAll(".cat")];
+
+  // Fallback: very old browsers without IntersectionObserver still see everything.
+  if (!("IntersectionObserver" in window)){
+    secs.forEach(s => s.classList.add("show"));
+    return;
+  }
 
   const spy = new IntersectionObserver(entries => {
     entries.forEach(e => {
