@@ -17,9 +17,15 @@ const MENU = [
         { n: "Super Lite", p: 15000 },
         { n: "Altan Gobi", p: 16000 },
       ]},
-      { label: { mn: "Лонх ба лааз", en: "Bottle & Can" }, items: [
-        { n: "Asahi", note: "0.33L", p: 16000 },
-        { n: "Heineken", note: "0.33L", p: 12000 },
+      { label: { mn: "Лааз", en: "Canned" }, meta: { mn: "0.5Л", en: "0.5L" }, items: [
+        { n: "Kaltenberg", p: 18000 },
+        { n: "Altan Gobi", p: 16000 },
+        { n: "Heineken", p: 15000 },
+        { n: "Сэнгүр", p: 12000 },
+      ]},
+      { label: { mn: "Лонх", en: "Bottled" }, meta: { mn: "0.33Л", en: "0.33L" }, items: [
+        { n: "Heineken", p: 12000 },
+        { n: "Asahi", p: 16000 },
       ]},
     ],
   },
@@ -27,10 +33,35 @@ const MENU = [
     id: "soft",
     title: { mn: "Зөөлөн ундаа", en: "Soft Drinks" },
     groups: [
-      { label: { mn: "Ундаа ба ус", en: "Drinks & Water" }, items: [
+      { label: { mn: "Ундаа", en: "Drinks" }, items: [
         { n: "Cola", p: 7500 },
         { n: "Sprite", p: 7500 },
+      ]},
+      { label: { mn: "Рашаан", en: "Mineral" }, meta: { mn: "0.33 лааз", en: "0.33 Can" }, items: [
+        { n: "Terelj", p: 7000 },
+        { n: "Selenge", p: 7000 },
+      ]},
+      { label: { mn: "Ус ба жүүс", en: "Water & Juice" }, items: [
         { n: "Bonaqua", p: 5000 },
+        { n: "Frutta", note: "1L", p: 14000 },
+        { n: "Frutta", note: "0.25L", p: 7500 },
+      ]},
+    ],
+  },
+  {
+    id: "grill",
+    title: { mn: "Грилл", en: "Grill" },
+    groups: [
+      { label: { mn: "Шорлог", en: "Skewers" }, items: [
+        { n: { mn: "Үхэр", en: "Beef" }, p: 40000 },
+        { n: { mn: "Хонь", en: "Lamb" }, p: 36000 },
+        { n: { mn: "Тахиа", en: "Chicken" }, p: 30000 },
+      ]},
+      { label: { mn: "Хоол", en: "Plates" }, items: [
+        { n: { mn: "Үхрийн махан бургер", en: "Beef Burger" }, p: 28000 },
+        { n: { mn: "Зайдасны цуглуулга", en: "Sausage Platter" }, p: 120000 },
+        { n: { mn: "Шарсан төмс", en: "Fries" }, p: 15000 },
+        { n: { mn: "Зайдастай төмс", en: "Fries with Sausage" }, p: 21000 },
       ]},
     ],
   },
