@@ -65,6 +65,24 @@ const MENU = [
       ]},
     ],
   },
+  {
+    id: "snacks",
+    title: { mn: "Зууш", en: "Snacks" },
+    groups: [
+      { label: { mn: "Самар", en: "Sunflower Seeds" }, meta: { mn: "150гр", en: "150g" }, items: [
+        { n: { mn: "Давстай", en: "Salted" }, p: 12000 },
+        { n: { mn: "Зөгийн балтай", en: "Honey" }, p: 13000 },
+      ]},
+      { label: { mn: "Doritos", en: "Doritos" }, meta: { mn: "130гр", en: "130g" }, items: [
+        { n: "Nacho", p: 20000 },
+        { n: "Taco", p: 20000 },
+      ]},
+      { label: { mn: "Lay's", en: "Lay's" }, meta: { mn: "140гр", en: "140g" }, items: [
+        { n: "Paprika", p: 25000 },
+        { n: { mn: "Шорлогтой", en: "Shashlik" }, p: 25000 },
+      ]},
+    ],
+  },
 ];
 
 /* ---------- render ---------- */
