@@ -16,6 +16,7 @@ const MENU = [
         { n: "Сэнгүр", p: 15000 },
         { n: "Super Lite", p: 15000 },
         { n: "Altan Gobi", p: 16000 },
+        { n: "Heineken", p: 16500 },
       ]},
       { label: { mn: "Лааз", en: "Canned" }, meta: { mn: "0.5Л", en: "0.5L" }, items: [
         { n: "Kaltenberg", p: 18000 },
@@ -83,6 +84,44 @@ const MENU = [
       ]},
     ],
   },
+  {
+    id: "set",
+    title: { mn: "Сэт цэс", en: "Set Menu" },
+    note: { mn: "Үнэ тун удахгүй.", en: "Pricing coming soon." },
+    groups: [
+      { set: true, label: { mn: "Сэт 1", en: "Set 1" }, items: [
+        { n: { mn: "Сэнгүр (draft)", en: "Сэнгүр (draft)" }, qty: 12 },
+        { n: { mn: "5 төрлийн шорлог", en: "Skewers — 5 kinds" } },
+        { n: { mn: "Alkaline ус", en: "Alkaline water" }, qty: 3 },
+        { n: "Cola", qty: 3 },
+        { n: "Doritos", qty: 2 },
+      ]},
+      { set: true, label: { mn: "Сэт 2", en: "Set 2" }, items: [
+        { n: "Beluga", note: "0.7L", qty: 1 },
+        { n: { mn: "Махан цуглуулга", en: "Meat Platter" }, qty: 1 },
+        { n: { mn: "Alkaline ус", en: "Alkaline water" }, qty: 6 },
+        { n: "Cola", qty: 6 },
+        { n: "Lay's", qty: 2 },
+      ]},
+      { set: true, label: { mn: "Сэт 3", en: "Set 3" }, items: [
+        { n: "Glenmorangie", qty: 1 },
+        { n: { mn: "5 төрлийн шорлог", en: "Skewers — 5 kinds" } },
+        { n: { mn: "Махан цуглуулга", en: "Meat Platter" }, qty: 1 },
+        { n: { mn: "Alkaline ус", en: "Alkaline water" }, qty: 6 },
+        { n: "Cola", qty: 6 },
+        { n: { mn: "Чипс", en: "Chips" }, qty: 1 },
+        { n: { mn: "Самар", en: "Sunflower Seeds" }, qty: 1 },
+      ]},
+      { set: true, label: { mn: "Сэт 4", en: "Set 4" }, meta: { mn: "4 хүн", en: "4 people" }, items: [
+        { n: "Soyombo", qty: 1 },
+        { n: { mn: "Шорлог", en: "Skewers" }, qty: 4 },
+        { n: { mn: "Alkaline ус", en: "Alkaline water" }, qty: 4 },
+        { n: "Cola", qty: 4 },
+        { n: { mn: "Чипс", en: "Chips" }, qty: 1 },
+        { n: { mn: "Самар", en: "Sunflower Seeds" }, qty: 1 },
+      ]},
+    ],
+  },
 ];
 
 /* ---------- render ---------- */
@@ -113,7 +152,7 @@ function render(){
 
     cat.groups.forEach(g => {
       const grp = document.createElement("div");
-      grp.className = "group" + (g.total != null ? " set" : "");
+      grp.className = "group" + ((g.set || g.total != null) ? " set" : "");
       const gmeta = g.meta ? `<span class="gmeta">${g.meta[lang]}</span>` : "";
       const gtotal = g.total != null ? `<span class="set-price">${num(g.total)}₮</span>` : "";
       let rows = "";
