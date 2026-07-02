@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>C Garden — Event Site Map (editable)</title>
+<style>
+  :root{
+    --page:#EBF3E0; --garden:#7CC95A; --garden2:#68bd49; --title:#2F7D33;
+    --hotel:#EADDC1; --hotelb:#C9A978; --wc:#2FB8A9; --smoke:#55697D;
+    --dessert:#E65D9C; --food:#F39B31; --asar:#EFE3C8; --asarb:#C8A24E;
+    --fountain:#2E86C1; --road:#CDD6C4; --tree:#3FAE4A; --ink:#33413a;
+  }
+  *{box-sizing:border-box; -webkit-user-select:none; user-select:none}
+  body{margin:0; font-family:'Trebuchet MS','Segoe UI',Arial,sans-serif; background:#dfe6d6; color:#22302a}
+  .bar{display:flex; gap:8px; align-items:center; flex-wrap:wrap; padding:10px 14px; background:#2f7d33; color:#fff; position:sticky; top:0; z-index:99}
+  .bar b{font-size:15px; margin-right:8px}
+  .bar button{border:0; border-radius:8px; padding:8px 12px; font-weight:700; cursor:pointer; background:#eafff0; color:#1b5e20}
+  .bar button:hover{background:#fff}
+  .bar .hint{font-size:12px; opacity:.9; font-weight:400}
+  .wrap{display:flex; justify-content:center; padding:18px}
+  /* map canvas: ratio 0.705 (portrait) */
+  #map{position:relative; width:min(820px,94vw); aspect-ratio:820/1163; background:var(--page);
+       border-radius:10px; box-shadow:0 10px 40px rgba(0,0,0,.25); overflow:hidden; touch-action:none}
+  svg.backdrop{position:absolute; inset:0; width:100%; height:100%}
+  .el{position:absolute; touch-action:none; cursor:grab}
+  .el:active{cursor:grabbing}
+  .card{border-radius:16px; color:#fff; padding:10px 8px; text-align:center; box-shadow:0 6px 14px rgba(0,0,0,.18); min-width:96px}
+  .card .ico{font-size:20px; line-height:1}
+  .card .en{font-weight:800; font-size:13px; letter-spacing:.02em; margin-top:3px}
+  .card .mn{font-size:10.5px; opacity:.92; margin-top:1px}
+  .editable{outline:none}
+  .editable[contenteditable="true"]{background:rgba(255,255,255,.25); border-radius:4px}
+  .pill{background:#fff; color:#c62828; border-radius:20px; padding:4px 9px; font-size:10px; font-weight:800;
+        display:flex; align-items:center; gap:5px; box-shadow:0 4px 10px rgba(0,0,0,.15); white-space:nowrap}
+  .pill .dot{width:14px;height:14px;border:2px solid #d32f2f;border-radius:50%;position:relative;display:inline-block}
+  .pill .dot::after{content:"";position:absolute;left:-2px;top:5px;width:16px;height:2px;background:#d32f2f;transform:rotate(45deg)}
+  .light{width:14px;height:14px;border-radius:50%;background:#ffd54a;box-shadow:0 0 0 3px rgba(255,213,74,.35)}
+  .tree{border-radius:50%;background:radial-gradient(circle at 35% 30%,#5ec85a,var(--tree))}
+  .hotel{background:var(--hotel); border:3px solid var(--hotelb); border-radius:14px; color:#5b4a2a; padding:14px;
+         background-image:linear-gradient(#0000,#0000),repeating-linear-gradient(#00000010 0 1px,#0000 1px 26px),repeating-linear-gradient(90deg,#00000010 0 1px,#0000 1px 26px)}
+  .hotel .en{font-weight:800;font-size:15px} .hotel .mn{font-size:11px;color:#7c6a45}
+  .asar{border-radius:50%; background:var(--asar); border:3px dashed var(--asarb); display:flex;align-items:flex-end;justify-content:center; color:#6b5320; font-weight:800; padding-bottom:14px; text-align:center}
+  .asar .mn{font-size:11px;color:#8a6f34;font-weight:600}
+  .fountain{border-radius:50%; background:radial-gradient(circle,#bfe3f5 22%,#4aa3e0 45%,var(--fountain) 75%); box-shadow:0 6px 16px rgba(0,0,0,.15)}
+  .title{background:var(--title); color:#fff; border-radius:14px; padding:12px 26px; text-align:center; box-shadow:0 8px 18px rgba(0,0,0,.2)}
+  .title .en{font-weight:800; font-size:20px; letter-spacing:.06em}
+  .title .mn{font-size:11px; opacity:.9; letter-spacing:.04em; margin-top:2px}
+  .legend{background:#fff; border-radius:12px; padding:10px 12px; font-size:11px; color:#3a4a40; box-shadow:0 6px 14px rgba(0,0,0,.15); line-height:1.7}
+  .legend b{display:block;margin-bottom:4px;color:#2f7d33}
+  .legend i{font-style:normal;display:inline-block;width:12px;height:12px;border-radius:50%;vertical-align:-1px;margin-right:6px}
+  .entrance{color:#e07b1f;font-weight:800;text-align:center;font-size:13px}
+  .entrance .arch{width:70px;height:35px;border:6px solid #e07b1f;border-bottom:0;border-radius:70px 70px 0 0;margin:0 auto 2px}
+  .entrance .mn{color:#8a6f34;font-size:10px;font-weight:600}
+  .balloon{width:26px;height:32px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ff8a5b,#e5502a)}
+  .balloon::after{content:"";display:block;width:1px;height:40px;background:#999;margin:0 auto}
+  @media print{ .bar{display:none} body{background:#fff} .wrap{padding:0} #map{box-shadow:none;border-radius:0;width:100%} }
+</style>
+</head>
+<body>
+  <div class="bar">
+    <b>C Garden — Site Map</b>
+    <button onclick="addLabel()">＋ Шошго нэмэх</button>
+    <button onclick="exportPNG()">⬇ PNG татах</button>
+    <button onclick="window.print()">🖨 Хэвлэх / PDF</button>
+    <span class="hint">Чирж зөөх · Нэр дээр 2 удаа товшоод засах</span>
+  </div>
+
+  <div class="wrap">
+    <div id="map">
+      <svg class="backdrop" viewBox="0 0 820 1163" preserveAspectRatio="none">
+        <!-- garden -->
+        <path d="M120,190 C60,320 78,520 96,660 C110,810 150,955 280,1000 C440,1050 630,1015 705,905
+                 C765,825 742,650 723,520 C706,388 760,300 700,242 C636,190 470,158 336,160
+                 C236,162 162,158 120,190 Z" fill="#7CC95A"/>
+        <path d="M470,300 C480,300 480,300 480,300" />
+        <!-- lighter garden patch -->
+        <ellipse cx="180" cy="430" rx="90" ry="120" fill="#86d165" opacity=".6"/>
+        <ellipse cx="560" cy="760" rx="120" ry="130" fill="#86d165" opacity=".55"/>
+        <!-- main road (entrance -> hotel) -->
+        <path d="M470,1120 C476,930 520,700 540,520 C548,430 548,360 545,318"
+              fill="none" stroke="#CDD6C4" stroke-width="46" stroke-linecap="round" stroke-dasharray="2 30"/>
+        <path d="M470,1120 C476,930 520,700 540,520 C548,430 548,360 545,318"
+              fill="none" stroke="#e7ecdf" stroke-width="40" stroke-linecap="round"/>
+        <!-- beige paths to Asar -->
+        <path d="M210,760 L360,560 M210,780 L370,690 M240,800 L300,560" stroke="#e6d8b0" stroke-width="18" stroke-linecap="round" fill="none"/>
+        <!-- hedge bottom-left -->
+        <path d="M40,1000 q30,-40 60,0 q30,-40 60,0 q30,-40 60,0 l0,30 l-180,0 Z" fill="#3fae4a"/>
+      </svg>
+
+      <!-- draggable elements (positions in %) -->
+      <div class="el" style="left:26%;top:2.5%"><div class="title">
+        <div class="en editable">EVENT SITE MAP</div>
+        <div class="mn editable">ГАДНА ТАЛБАЙН ЕРӨНХИЙ ЗУРАГЛАЛ · G GARDEN</div></div></div>
+
+      <div class="el balloon" style="left:8%;top:9.5%"></div>
+
+      <div class="el hotel" style="left:62%;top:25%;width:32%">
+        <div class="en editable">CONTINENTAL HOTEL</div>
+        <div class="mn editable">Зочид буудал</div></div>
+
+      <div class="el fountain" style="left:70%;top:53%;width:15%;aspect-ratio:1"></div>
+      <div class="el" style="left:71%;top:63%"><div class="entrance"><div class="mn editable" style="color:#3a6b3a;font-weight:800">FOUNTAIN</div><div class="mn editable">Усан оргилуур</div></div></div>
+
+      <div class="el asar" style="left:9%;top:60%;width:30%;aspect-ratio:1">
+        <div><div class="en editable">ASAR</div><div class="mn editable">Гол асар</div></div></div>
+
+      <div class="el card" style="left:28%;top:29%;background:var(--wc)">
+        <div class="ico">🚻</div><div class="en editable">WC</div><div class="mn editable">Ариун цэвэр</div></div>
+
+      <div class="el card" style="left:33%;top:44%;background:var(--smoke)">
+        <div class="ico">🚬</div><div class="en editable">SMOKING ZONE</div><div class="mn editable">Тамхи татах цэг</div></div>
+
+      <div class="el card" style="left:34%;top:59%;background:var(--dessert)">
+        <div class="ico">🍸</div><div class="en editable">DESSERT &amp; COCKTAIL</div><div class="mn editable">Амттан</div></div>
+
+      <div class="el card" style="left:44%;top:67%;background:var(--food)">
+        <div class="ico">🍴</div><div class="en editable">FOOD</div><div class="mn editable">Хоол</div></div>
+
+      <div class="el pill" style="left:40%;top:26%"><span class="dot"></span><span class="editable">NO SMOKING</span></div>
+      <div class="el pill" style="left:41%;top:39%"><span class="dot"></span><span class="editable">NO SMOKING</span></div>
+      <div class="el pill" style="left:10%;top:57%"><span class="dot"></span><span class="editable">NO SMOKING</span></div>
+
+      <div class="el light" style="left:33%;top:49%"></div>
+      <div class="el light" style="left:24%;top:47%"></div>
+      <div class="el light" style="left:36%;top:56%"></div>
+      <div class="el light" style="left:57%;top:88%"></div>
+
+      <div class="el tree" style="left:12%;top:33%;width:26px;height:26px"></div>
+      <div class="el tree" style="left:15%;top:52%;width:30px;height:30px"></div>
+      <div class="el tree" style="left:60%;top:20%;width:24px;height:24px"></div>
+      <div class="el tree" style="left:64%;top:64%;width:26px;height:26px"></div>
+      <div class="el tree" style="left:69%;top:72%;width:22px;height:22px"></div>
+      <div class="el tree" style="left:50%;top:35%;width:20px;height:20px"></div>
+
+      <div class="el" style="left:52%;top:90%"><div class="entrance">
+        <div class="arch"></div><div class="editable">ENTRANCE ↑</div><div class="mn editable">Орц / Үүд</div></div></div>
+
+      <div class="el legend" style="left:3%;top:90%;width:29%">
+        <b class="editable">Тэмдэглэгээ</b>
+        <div><i style="background:#fff;border:2px solid #d32f2f"></i><span class="editable">No-smoking · Тамхи хориглоно</span></div>
+        <div><i style="background:#ffd54a"></i><span class="editable">Lights · Гэрэлтүүлэг</span></div>
+        <div><i style="background:var(--wc)"></i><span class="editable">WC · Ариун цэвэр</span></div>
+        <div><i style="background:var(--smoke)"></i><span class="editable">Smoking zone · Тамхи татах цэг</span></div>
+      </div>
+    </div>
+  </div>
+
+<script>
+const map=document.getElementById('map');
+let drag=null, ox=0, oy=0, moved=false;
+map.addEventListener('pointerdown', e=>{
+  const el=e.target.closest('.el'); if(!el) return;
+  if(e.target.isContentEditable) return;
+  drag=el; moved=false;
+  const r=el.getBoundingClientRect();
+  ox=e.clientX-r.left; oy=e.clientY-r.top;
+  el.setPointerCapture(e.pointerId); el.style.zIndex=1000;
+});
+map.addEventListener('pointermove', e=>{
+  if(!drag) return; moved=true;
+  const pr=map.getBoundingClientRect();
+  let x=(e.clientX-pr.left-ox)/pr.width*100;
+  let y=(e.clientY-pr.top-oy)/pr.height*100;
+  drag.style.left=Math.max(-5,Math.min(100,x))+'%';
+  drag.style.top=Math.max(-3,Math.min(100,y))+'%';
+});
+map.addEventListener('pointerup', ()=>{ drag=null; });
+
+// double-click to edit any .editable
+map.addEventListener('dblclick', e=>{
+  const t=e.target.closest('.editable'); if(!t) return;
+  t.contentEditable=true; t.focus();
+  document.execCommand&&document.getSelection().selectAllChildren(t);
+});
+map.addEventListener('blur', e=>{
+  if(e.target.classList&&e.target.classList.contains('editable')) e.target.contentEditable=false;
+}, true);
+
+function addLabel(){
+  const d=document.createElement('div');
+  d.className='el pill'; d.style.left='45%'; d.style.top='45%';
+  d.innerHTML='<span class="editable">Шинэ шошго</span>';
+  map.appendChild(d);
+}
+function exportPNG(){
+  const s=document.createElement('script');
+  s.src='https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js';
+  s.onload=()=>html2canvas(map,{scale:3,backgroundColor:null}).then(c=>{
+    const a=document.createElement('a'); a.href=c.toDataURL('image/png'); a.download='c-garden-sitemap.png'; a.click();
+  });
+  s.onerror=()=>alert('PNG татахад интернэт хэрэгтэй. Оронд нь "Хэвлэх / PDF" ашиглана уу.');
+  if(window.html2canvas) s.onload(); else document.body.appendChild(s);
+}
+</script>
+</body>
+</html>
