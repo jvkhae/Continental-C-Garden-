@@ -11,6 +11,7 @@ const MENU = [
   {
     id: "cocktails",
     title: { mn: "Коктейль", en: "Cocktails" },
+    hh: true,
     groups: [
       { label: { mn: "Барменийн онцлох", en: "Bartender Special" }, items: [
         { n: "GinX", p: 40000 },
@@ -27,6 +28,7 @@ const MENU = [
   {
     id: "beer",
     title: { mn: "Шар айраг", en: "Beer" },
+    hh: true,
     groups: [
       { label: { mn: "Савнаас", en: "Draft" }, meta: { mn: "0.5Л", en: "0.5L" }, items: [
         { n: "Heineken", p: 16500 },
@@ -104,8 +106,13 @@ const MENU = [
         { n: { mn: "Хонь", en: "Lamb" }, p: 36000 },
         { n: { mn: "Тахиа", en: "Chicken" }, p: 30000 },
       ]},
+      { label: { mn: "Пицца", en: "Pizza" }, items: [
+        { n: "Margarita", p: 30000 },
+        { n: "Meat Lovers", p: 40000 },
+      ]},
       { label: { mn: "Хоол", en: "Plates" }, items: [
         { n: { mn: "Үхрийн махан бургер", en: "Beef Burger" }, p: 28000 },
+        { n: { mn: "Махан цуглуулга", en: "Meat Platter" }, p: 80000 },
         { n: { mn: "Зайдасны цуглуулга", en: "Sausage Platter" }, p: 120000 },
         { n: { mn: "Шарсан төмс", en: "Fries" }, p: 15000 },
         { n: { mn: "Зайдастай төмс", en: "Fries with Sausage" }, p: 21000 },
@@ -151,6 +158,7 @@ const MENU = [
   {
     id: "coffee",
     title: { mn: "Кофе ба цай", en: "Coffee & Tea" },
+    hh: true,
     groups: [
       { label: { mn: "Кофе", en: "Coffee" }, items: [
         { n: "Single Espresso", note: "30ml", p: 6000 },
@@ -180,6 +188,7 @@ const MENU = [
   {
     id: "soft",
     title: { mn: "Зөөлөн ундаа", en: "Soft Drinks" },
+    hh: true,
     groups: [
       { label: { mn: "Оргилуун", en: "Orgiluun" }, meta: { mn: "0.33 лааз", en: "0.33 Can" }, items: [
         { n: "Lemon Lime", p: 5000 },
@@ -207,8 +216,28 @@ const MENU = [
 const num = n => n.toLocaleString("en-US");
 const price = it => it.p2 ? `${num(it.p)} / ${num(it.p2)}₮` : `${num(it.p)}₮`;
 
+/* ---------- Happy Hour · Монголын цагаар (UTC+8) 17:00–20:00 ----------
+   hh:true тэмдэглэсэн ангиллын ундаа энэ хугацаанд 50% хямдарна.
+   20:00 өнгөрөнгүүт автоматаар үндсэн үнэ рүү буцна. */
+const HH_FROM = 17 * 60, HH_TO = 20 * 60;      // минутаар (17:00–20:00)
+function mnMinutes(){ const d = new Date(); return (d.getUTCHours()*60 + d.getUTCMinutes() + 8*60) % 1440; }
+function hhActive(){ const m = mnMinutes(); return m >= HH_FROM && m < HH_TO; }
+let _hhState = null;
+
+function updateHHbar(lang, on){
+  const bar = document.getElementById("hhbar"); if (!bar) return;
+  bar.className = "hhbar" + (on ? " on" : "");
+  bar.innerHTML = on
+    ? (lang==="mn" ? "🍻 <b>HAPPY HOUR</b> · 17:00–20:00 · Сонгосон ундаа <b>−50%</b>"
+                   : "🍻 <b>HAPPY HOUR</b> · 17:00–20:00 · Selected drinks <b>−50%</b>")
+    : (lang==="mn" ? "⏰ <b>Happy Hour</b> — өдөр бүр 17:00–20:00, сонгосон ундаа −50%"
+                   : "⏰ <b>Happy Hour</b> — daily 17:00–20:00, selected drinks −50%");
+}
+
 function render(){
   const lang = document.body.dataset.lang;
+  const hhOn = hhActive(); _hhState = hhOn;
+  updateHHbar(lang, hhOn);
   const pills = document.getElementById("pills");
   const main = document.getElementById("menu");
   pills.innerHTML = "";
@@ -240,8 +269,15 @@ function render(){
         const noteTxt = it.note ? (typeof it.note === "string" ? it.note : it.note[lang]) : "";
         const note = noteTxt ? ` <span class="note">${noteTxt}</span>` : "";
         const thumb = it.img ? `<img class="thumb" src="${it.img}" alt="${nm}" loading="lazy">` : "";
-        const right = it.p != null ? price(it)
-                    : (it.qty != null ? `<span class="qty">×${it.qty}</span>` : "");
+        let right = "";
+        if (it.p != null){
+          if (cat.hh && hhOn && it.p2 == null){
+            const d = Math.round(it.p / 2 / 50) * 50;
+            right = `<span class="orig">${num(it.p)}₮</span><span class="hhprice">${num(d)}₮</span>`;
+          } else right = price(it);
+        } else if (it.qty != null){
+          right = `<span class="qty">×${it.qty}</span>`;
+        }
         rows += `
           <div class="item${it.img ? " has-img" : ""}">
             ${thumb}
@@ -298,4 +334,6 @@ document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll(".lang-toggle button").forEach(b =>
     b.addEventListener("click", () => setLang(b.dataset.lang)));
   setLang(saved);
+  // Happy Hour эхлэх/дуусах үед автоматаар шинэчилнэ
+  setInterval(() => { if (hhActive() !== _hhState) render(); }, 20000);
 });
