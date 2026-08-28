@@ -9,9 +9,29 @@
 
 const MENU = [
   {
+    id: "cocktails",
+    title: { mn: "Коктейль", en: "Cocktails" },
+    groups: [
+      { label: { mn: "Барменийн онцлох", en: "Bartender's Special" }, items: [
+        { n: "GinX", p: 40000 },
+      ]},
+      { label: { mn: "Сонгодог коктейль", en: "Classic Cocktails" }, items: [
+        { n: "Whiskey Highball", p: 35000 },
+        { n: "Blue Gin & Tonic", p: 35000 },
+        { n: "Negroni", p: 35000 },
+        { n: "Aperol Spritz", p: 35000 },
+      ]},
+      { label: { mn: "Лимонад & Айстай цай", en: "Lemonades & Iced Tea" }, items: [
+        { n: "Kiwi Lemonade", p: 18000 },
+        { n: "Strawberry Lemonade", p: 18000 },
+        { n: "Yuzu Lemonade", p: 18000 },
+        { n: "Peach Iced Tea", p: 18000 },
+      ]},
+    ],
+  },
+  {
     id: "beer",
     title: { mn: "Шар айраг", en: "Beer" },
-    hh: true,
     groups: [
       { label: { mn: "Савнаас", en: "Draft" }, meta: { mn: "0.5Л", en: "0.5L" }, items: [
         { n: "Сэнгүр", p: 15000 },
@@ -27,27 +47,40 @@ const MENU = [
       ]},
       { label: { mn: "Лонх", en: "Bottled" }, meta: { mn: "0.33Л", en: "0.33L" }, items: [
         { n: "Heineken", p: 12000 },
-        { n: "Asahi", p: 16000 },
       ]},
     ],
   },
   {
     id: "soft",
     title: { mn: "Зөөлөн ундаа", en: "Soft Drinks" },
-    hh: true,
     groups: [
-      { label: { mn: "Ундаа", en: "Drinks" }, items: [
+      { label: { mn: "Ундаа", en: "Drinks" }, meta: { mn: "0.33 лааз", en: "0.33 Can" }, items: [
         { n: "Cola", p: 7500 },
         { n: "Sprite", p: 7500 },
-      ]},
-      { label: { mn: "Рашаан", en: "Mineral" }, meta: { mn: "0.33 лааз", en: "0.33 Can" }, items: [
         { n: "Terelj", p: 7000 },
         { n: "Selenge", p: 7000 },
       ]},
-      { label: { mn: "Ус ба жүүс", en: "Water & Juice" }, items: [
-        { n: "Bonaqua", p: 5000 },
-        { n: "Frutta", note: "1L", p: 14000 },
-        { n: "Frutta", note: "0.25L", p: 7500 },
+      { label: { mn: "Рашаан", en: "Mineral Water" }, items: [
+        { n: "Aqua Crystal", p: 5000 },
+        { n: "Millenia", p: 7000 },
+      ]},
+    ],
+  },
+  {
+    id: "snacks",
+    title: { mn: "Зууш", en: "Snacks" },
+    groups: [
+      { label: { mn: "Самар", en: "Sunflower Seeds" }, meta: { mn: "150гр", en: "150g" }, items: [
+        { n: { mn: "Давстай", en: "Salted" }, p: 15000 },
+        { n: { mn: "Зөгийн балтай", en: "Honey" }, p: 15000 },
+      ]},
+      { label: { mn: "Doritos", en: "Doritos" }, meta: { mn: "130гр", en: "130g" }, items: [
+        { n: "Nacho", p: 20000 },
+        { n: "Taco", p: 20000 },
+      ]},
+      { label: { mn: "Lay's", en: "Lay's" }, meta: { mn: "140гр", en: "140g" }, items: [
+        { n: "Paprika", p: 25000 },
+        { n: { mn: "Шорлогтой", en: "Shashlik" }, p: 25000 },
       ]},
     ],
   },
@@ -61,12 +94,12 @@ const MENU = [
         { n: { mn: "Тахиа", en: "Chicken" }, p: 30000 },
       ]},
       { label: { mn: "Пицца", en: "Pizza" }, items: [
-        { n: "Margarita", p: 30000 },
-        { n: "Meat Lovers", p: 40000 },
+        { n: "Margherita", p: 30000 },
+        { n: "Meat Lover's", p: 40000 },
       ]},
       { label: { mn: "Хоол", en: "Plates" }, items: [
         { n: { mn: "Үхрийн махан бургер", en: "Beef Burger" }, p: 28000 },
-        { n: { mn: "Махан цуглуулга", en: "Meat Platter" }, p: 80000 },
+        { n: { mn: "Махан цуглуулга", en: "Meat Platter" }, p: 200000 },
         { n: { mn: "Зайдасны цуглуулга", en: "Sausage Platter" }, p: 120000 },
         { n: { mn: "Шарсан төмс", en: "Fries" }, p: 15000 },
         { n: { mn: "Зайдастай төмс", en: "Fries with Sausage" }, p: 21000 },
@@ -74,57 +107,18 @@ const MENU = [
     ],
   },
   {
-    id: "snacks",
-    title: { mn: "Зууш", en: "Snacks" },
+    id: "sushi",
+    title: { mn: "Суши & Сашими", en: "Sushi & Sashimi" },
     groups: [
-      { label: { mn: "Самар", en: "Sunflower Seeds" }, meta: { mn: "150гр", en: "150g" }, items: [
-        { n: { mn: "Давстай", en: "Salted" }, p: 12000 },
-        { n: { mn: "Зөгийн балтай", en: "Honey" }, p: 13000 },
+      { label: { mn: "Суши", en: "Sushi" }, items: [
+        { n: "California roll", p: 30000 },
+        { n: "Smoked salmon roll", p: 28000 },
+        { n: "Crab roll", p: 25000 },
+        { n: "Shiromi roll", p: 25000 },
+        { n: { mn: "Суши ролл сэт", en: "Sushi roll set" }, p: 100000 },
       ]},
-      { label: { mn: "Doritos", en: "Doritos" }, meta: { mn: "130гр", en: "130g" }, items: [
-        { n: "Nacho", p: 20000 },
-        { n: "Taco", p: 20000 },
-      ]},
-      { label: { mn: "Lay's", en: "Lay's" }, meta: { mn: "140гр", en: "140g" }, items: [
-        { n: "Paprika", p: 25000 },
-        { n: { mn: "Шорлогтой", en: "Shashlik" }, p: 25000 },
-      ]},
-    ],
-  },
-  {
-    id: "set",
-    title: { mn: "Сэт цэс", en: "Set Menu" },
-    groups: [
-      { set: true, label: { mn: "Сэт 1", en: "Set 1" }, total: 600000, items: [
-        { n: { mn: "Сэнгүр (draft)", en: "Сэнгүр (draft)" }, qty: 12 },
-        { n: { mn: "5 төрлийн шорлог", en: "Skewers — 5 kinds" } },
-        { n: { mn: "Bonaqua ус", en: "Bonaqua water" }, qty: 3 },
-        { n: "Cola", qty: 3 },
-        { n: "Doritos", qty: 2 },
-      ]},
-      { set: true, label: { mn: "Сэт 2", en: "Set 2" }, total: 900000, items: [
-        { n: "Beluga", note: "0.7L", qty: 1 },
-        { n: { mn: "Махан цуглуулга", en: "Meat Platter" }, qty: 1 },
-        { n: { mn: "Bonaqua ус", en: "Bonaqua water" }, qty: 6 },
-        { n: "Cola", qty: 6 },
-        { n: "Lay's", qty: 2 },
-      ]},
-      { set: true, label: { mn: "Сэт 3", en: "Set 3" }, total: 1200000, items: [
-        { n: "Glenmorangie", qty: 1 },
-        { n: { mn: "5 төрлийн шорлог", en: "Skewers — 5 kinds" } },
-        { n: { mn: "Махан цуглуулга", en: "Meat Platter" }, qty: 1 },
-        { n: { mn: "Bonaqua ус", en: "Bonaqua water" }, qty: 6 },
-        { n: "Cola", qty: 6 },
-        { n: { mn: "Чипс", en: "Chips" }, qty: 1 },
-        { n: { mn: "Самар", en: "Sunflower Seeds" }, qty: 1 },
-      ]},
-      { set: true, label: { mn: "Сэт 4", en: "Set 4" }, meta: { mn: "4 хүн", en: "4 people" }, total: 500000, items: [
-        { n: "Soyombo", qty: 1 },
-        { n: { mn: "Шорлог", en: "Skewers" }, qty: 4 },
-        { n: { mn: "Bonaqua ус", en: "Bonaqua water" }, qty: 4 },
-        { n: "Cola", qty: 4 },
-        { n: { mn: "Чипс", en: "Chips" }, qty: 1 },
-        { n: { mn: "Самар", en: "Sunflower Seeds" }, qty: 1 },
+      { label: { mn: "Сашими", en: "Sashimi" }, items: [
+        { n: { mn: "Сашими таваг", en: "Sashimi platter" }, p: 60000 },
       ]},
     ],
   },
@@ -135,8 +129,8 @@ const num = n => n.toLocaleString("en-US");
 const price = it => it.p2 ? `${num(it.p)} / ${num(it.p2)}₮` : `${num(it.p)}₮`;
 
 /* ---------- Happy Hour · Монголын цагаар (UTC+8) 17:00–20:00 ----------
-   hh:true тэмдэглэсэн ангиллын ундаа энэ хугацаанд 50% хямдарна.
-   20:00 өнгөрөнгүүт автоматаар үндсэн үнэ рүү буцна. */
+   Энэ хугацаанд Superlite draft айраг 1+1 болно. Баннер автоматаар
+   17:00-д гарч, 20:00 өнгөрөнгүүт алга болно. */
 const HH_FROM = 17 * 60, HH_TO = 20 * 60;      // минутаар (17:00–20:00)
 function mnMinutes(){ const d = new Date(); return (d.getUTCHours()*60 + d.getUTCMinutes() + 8*60) % 1440; }
 function hhActive(){ const m = mnMinutes(); return m >= HH_FROM && m < HH_TO; }
@@ -146,10 +140,10 @@ function updateHHbar(lang, on){
   const bar = document.getElementById("hhbar"); if (!bar) return;
   bar.className = "hhbar" + (on ? " on" : "");
   bar.innerHTML = on
-    ? (lang==="mn" ? "🍻 <b>HAPPY HOUR</b> · 17:00–20:00 · Сонгосон ундаа <b>−50%</b>"
-                   : "🍻 <b>HAPPY HOUR</b> · 17:00–20:00 · Selected drinks <b>−50%</b>")
-    : (lang==="mn" ? "⏰ <b>Happy Hour</b> — өдөр бүр 17:00–20:00, сонгосон ундаа −50%"
-                   : "⏰ <b>Happy Hour</b> — daily 17:00–20:00, selected drinks −50%");
+    ? (lang==="mn" ? "🍻 <b>HAPPY HOUR</b> · 17:00–20:00 · <b>1+1</b> Superlite draft айраг"
+                   : "🍻 <b>HAPPY HOUR</b> · 17:00–20:00 · <b>1+1</b> Superlite draft beer")
+    : (lang==="mn" ? "⏰ <b>Happy Hour</b> — өдөр бүр 17:00–20:00 · 1+1 Superlite draft айраг"
+                   : "⏰ <b>Happy Hour</b> — daily 17:00–20:00 · 1+1 Superlite draft beer");
 }
 
 function render(){
