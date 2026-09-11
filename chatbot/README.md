@@ -8,13 +8,23 @@ listed there.
 ## How it works
 
 - `GET /webhook` — Meta's one-time URL verification.
-- `POST /webhook` — every incoming Messenger message. The app verifies Meta's
-  request signature, sends the message + short conversation history to Claude
-  with `knowledge.md` as the system prompt, and replies via the Messenger
-  Send API.
+- `POST /webhook` — every incoming Messenger message/postback. The app
+  verifies Meta's request signature, then:
+  - If the guest tapped a **quick-reply button** (or the "Get Started"
+    button / persistent menu), it's handled deterministically in
+    `handle_payload()` — no Claude call, so it's instant and free. This
+    covers the category menu (🍽 Ресторан / 🎉 Хурим‑Зоог / 🛏 Өрөө /
+    📞 Холбоо барих) and the **Banquets & Events** sub-menu, which links
+    straight to the three flipbook menus (Хүлээн авалт / Хуримын цэс /
+    Ресторан цэс).
+  - Otherwise it's free text — sent to Claude with `knowledge.md` as the
+    system prompt, and the reply always comes back with the main category
+    quick replies attached so the guest can jump back into the button flow.
 - Conversation history is kept in memory per sender — fine for a single
   process/low volume. For production scale (multiple workers, restarts),
   swap `_conversations` in `app.py` for Redis or a small DB table.
+- Menu links (flipbook URLs) live in `MENU_LINKS` in `app.py` — update them
+  there when the wedding/reception/restaurant flipbooks change.
 
 ## 1. Local setup
 
@@ -67,10 +77,25 @@ Note the public URL, e.g. `https://your-domain.example.com`.
 
 Meta will call `GET /webhook` immediately to verify — if it succeeds, you're live.
 
-## 5. Test it
+## 5. Turn on the Get Started button + menu
 
-Message your Facebook Page directly. Try: "What are your hours?", "What's on
-the C Garden menu?", "How do I book a room?".
+Run once (and again whenever you change the category buttons):
+
+```bash
+cd chatbot
+python setup_messenger_profile.py
+```
+
+This sets the Page's "Get Started" button and persistent menu (the ☰ icon
+in Messenger) so new conversations land straight on the category
+quick-reply flow.
+
+## 6. Test it
+
+Message your Facebook Page directly. Try tapping the category buttons
+(Ресторан / Хурим‑Зоог / Өрөө / Холбоо барих), then Хурим/Зоог → each of the
+3 sub-menus. Also try free text: "What are your hours?", "Хуримын цэс
+харуулаач", "How do I book a room?".
 
 ## Keeping it accurate
 
