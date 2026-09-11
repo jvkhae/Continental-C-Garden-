@@ -4,15 +4,22 @@ A single-page, mobile-friendly **food menu website** plus a **QR code** that lin
 
 > The menu currently has **3 placeholder dishes**. Send me the real food details anytime and I'll swap them in — the QR code does **not** change.
 
+Also includes a general hotel **landing page** (`promo.html`) and a **social media marketing pack** (`social/`) — see below.
+
 ## What's here
 
 | File | Purpose |
 |------|---------|
-| `index.html` | The menu website (self-contained, no build step) |
+| `index.html` | The C Garden menu website (self-contained, no build step) |
+| `promo.html` | General "The Continental Hotel" landing page — links to the menu, placeholder amenities/contact info |
 | `menu-qr.png` | QR code image (raster — for screens/quick print) |
 | `menu-qr.svg` | QR code (vector — for high-quality / large print) |
 | `generate_qr.py` | Regenerates the QR codes |
+| `social/marketing-plan.md` | Social media strategy — goals, pillars, posting cadence, sample calendar |
+| `social/captions.md` | Ready-to-post captions/copy per content pillar, with hashtags |
 | `.nojekyll` | Tells GitHub Pages to serve files as-is |
+
+Facebook poster + 3 square social post graphics are published as an editable design canvas (see `social/marketing-plan.md` for the link) — open it to export PNGs for posting.
 
 ## How it works
 

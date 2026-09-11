@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#1f3b2c" />
+  <title>The Continental Hotel</title>
+  <meta name="description" content="The Continental Hotel — rooms, garden, rooftop, and C Garden dining." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f7f4ee;
+      --card: #fffdf9;
+      --ink: #23291f;
+      --muted: #7a7a6f;
+      --accent: #1f3b2c;
+      --gold: #b08d3e;
+      --line: #e7e1d4;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+    .hero {
+      background: var(--accent);
+      color: #f4efe3;
+      text-align: center;
+      padding: 64px 20px 52px;
+    }
+    .hero .eyebrow {
+      letter-spacing: .35em;
+      text-transform: uppercase;
+      font-size: .72rem;
+      color: var(--gold);
+      font-weight: 600;
+    }
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 700;
+      font-size: clamp(2.8rem, 9vw, 4.4rem);
+      margin: 10px 0 6px;
+      line-height: 1.05;
+    }
+    .hero p { color: #cdd6c8; font-size: 1rem; max-width: 34ch; margin: 0 auto; }
+    .hero .cta {
+      display: inline-block;
+      margin-top: 26px;
+      padding: 13px 28px;
+      background: var(--gold);
+      color: #1f2a1b;
+      font-weight: 600;
+      font-size: .92rem;
+      text-decoration: none;
+      border-radius: 999px;
+      letter-spacing: .02em;
+    }
+
+    main { max-width: 720px; margin: 0 auto; padding: 48px 20px 24px; }
+    .section-head {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 22px;
+    }
+    .section-head h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+    .section-head .rule { flex: 1; height: 1px; background: var(--line); }
+
+    .amenities {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-bottom: 48px;
+    }
+    .amenity {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 20px 16px;
+      text-align: center;
+    }
+    .amenity .name { font-weight: 600; font-size: .98rem; margin-bottom: 4px; }
+    .amenity .desc { color: var(--muted); font-size: .82rem; }
+
+    .dining {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 26px 24px;
+      margin-bottom: 48px;
+      text-align: center;
+    }
+    .dining .eyebrow {
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      font-size: .68rem;
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .dining h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.7rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+    .dining p { color: var(--muted); font-size: .92rem; margin-bottom: 16px; }
+    .dining a {
+      display: inline-block;
+      padding: 10px 22px;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: .88rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 32px 20px 48px;
+      color: var(--muted);
+      font-size: .82rem;
+      border-top: 1px solid var(--line);
+    }
+    footer strong { color: var(--accent); }
+    footer .placeholder { margin-top: 6px; font-style: italic; }
+
+    @media (max-width: 480px) {
+      .amenities { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="eyebrow">Hotel</div>
+    <h1>The Continental</h1>
+    <p>Where the city slows down.</p>
+    <a class="cta" href="#book">Book your stay</a>
+  </header>
+
+  <main>
+    <div class="section-head"><h2>Stay</h2><span class="rule"></span></div>
+    <!-- ===== AMENITIES — placeholder names/descriptions, swap for the real thing ===== -->
+    <div class="amenities">
+      <div class="amenity">
+        <div class="name">Rooms &amp; Suites</div>
+        <div class="desc">Quiet, considered spaces.</div>
+      </div>
+      <div class="amenity">
+        <div class="name">Garden</div>
+        <div class="desc">A green pause in the city.</div>
+      </div>
+      <div class="amenity">
+        <div class="name">Rooftop</div>
+        <div class="desc">Open evenings.</div>
+      </div>
+    </div>
+    <!-- ===== END AMENITIES ===== -->
+
+    <div class="section-head"><h2>Dine</h2><span class="rule"></span></div>
+    <div class="dining">
+      <div class="eyebrow">Restaurant</div>
+      <h3>C Garden</h3>
+      <p>Fresh plates, served all day, 11:00–22:00. Open to guests and visitors alike.</p>
+      <a href="./index.html">View the menu</a>
+    </div>
+
+    <div class="section-head" id="book"><h2>Book</h2><span class="rule"></span></div>
+    <div class="dining">
+      <p style="margin-bottom:0;">Direct booking coming soon — for now, reach us at <em>[reservations email/phone]</em>.</p>
+    </div>
+  </main>
+
+  <footer>
+    <strong>The Continental Hotel</strong><br />
+    [Address] · [Phone] · [Social handles]
+    <div class="placeholder">Placeholder contact details — replace with the real address, phone, and social links.</div>
+  </footer>
+</body>
+</html>
