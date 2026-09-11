@@ -12,6 +12,7 @@ Also includes a general hotel **landing page** (`promo.html`), a **social media 
 |------|---------|
 | `index.html` | The C Garden menu website (self-contained, no build step) |
 | `promo.html` | General "The Continental Hotel" landing page — links to the menu, placeholder amenities/contact info |
+| `event-menu.html` | Event/banquet set menus (3 price tiers) as an auto-advancing slideshow |
 | `menu-qr.png` | QR code image (raster — for screens/quick print) |
 | `menu-qr.svg` | QR code (vector — for high-quality / large print) |
 | `generate_qr.py` | Regenerates the QR codes |

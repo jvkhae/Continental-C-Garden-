@@ -55,16 +55,14 @@ availability, or policy details. Reply in the language the guest writes in.
 
 # --- Category button flow -------------------------------------------------
 # Deterministic (no Claude call) so navigation is instant and always correct.
-# Payload -> flipbook menu URL. Order matches how the guest picks them:
-# Banquets & Events -> Reception menu / Wedding menu / Restaurant menu.
+# Payload -> menu URL. Reception menu is our own event-menu.html slideshow
+# (3 set-menu tiers); the restaurant menu stays a flipbook.
 MENU_LINKS = {
-    "MENU_RECEPTION": "https://heyzine.com/flip-book/77bda2aefe.html",
-    "MENU_WEDDING": "https://heyzine.com/flip-book/8baacfde05.html",
+    "MENU_RECEPTION": "https://jvkhae.github.io/continental-c-garden-/event-menu.html",
     "MENU_RESTAURANT_FLIP": "https://heyzine.com/flip-book/504989dbda.html#page/10",
 }
 MENU_LABELS = {
-    "MENU_RECEPTION": "Хүлээн авалтын цэс",
-    "MENU_WEDDING": "Хуримын цэс",
+    "MENU_RECEPTION": "Хүлээн авалт, зоог (Event Menu)",
     "MENU_RESTAURANT_FLIP": "Ресторан цэс",
 }
 
@@ -77,7 +75,6 @@ MAIN_QUICK_REPLIES = [
 
 BANQUET_QUICK_REPLIES = [
     {"content_type": "text", "title": "Хүлээн авалт", "payload": "MENU_RECEPTION"},
-    {"content_type": "text", "title": "Хуримын цэс", "payload": "MENU_WEDDING"},
     {"content_type": "text", "title": "Ресторан цэс", "payload": "MENU_RESTAURANT_FLIP"},
     {"content_type": "text", "title": "‹ Буцах", "payload": "GET_STARTED"},
 ]

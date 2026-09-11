@@ -24,13 +24,16 @@ The chatbot answers only from this file (plus greetings/small talk). Keep it upd
 
 ## Banquets & Events (Хурим, хүлээн авалт)
 
-Full menus are published as flipbook catalogs (not plain text — link the guest to them):
-
-- Хүлээн авалтын цэс (Reception menu): https://heyzine.com/flip-book/77bda2aefe.html
-- Хуримын цэс (Wedding menu): https://heyzine.com/flip-book/8baacfde05.html
+- Event Menu page (3 set-menu tiers, slideshow): https://jvkhae.github.io/continental-c-garden-/event-menu.html
 - Ресторан цэс (Restaurant menu, flipbook): https://heyzine.com/flip-book/504989dbda.html#page/10
 
-If a guest asks about weddings, banquets, event catering, or "хурим/хүлээн авалтын цэс", share the relevant link(s) above (or all three if unsure which they mean). These are also available as quick-reply buttons under "🎉 Хурим/Зоог" in the chat menu.
+Event Menu tiers (all prices exclude 12% tax):
+
+- **250,000 MNT** — Salad: crispy duck orange salad with cranberry sauce. Main: royal skirt beef steak with delica pumpkin mash and unagi sauce, or salmon fillet in fresh sauce. Dessert: red velvet cake. Beverages: alkaline water, Orgiluun/Terelj/Selenge, red or white wine, Heineken/Hoegarden, Soyombo vodka, milk tea.
+- **180,000 MNT** — Salad: milk skin vegetable salad. Main: slow-roasted crispy pork belly with honey mustard sauce, or royal skirt beef steak with delica pumpkin mash and unagi sauce. Dessert: Spartak cake. Beverages: alkaline water, Orgiluun/Terelj/Selenge, red or white wine, Heineken/Altangobi, Evok vodka, milk tea.
+- **150,000 MNT** — Salad: Caesar salad. Main: Japanese-style miso-marinated chicken, or classic-style meatloaf with thyme red wine sauce and mashed potato. Dessert: poached pear. Beverages: aqua crystal water, Orgiluun/Terelj/Selenge, red or white wine, Heineken/Altangobi, Eden vodka, milk tea.
+
+If a guest asks about weddings, banquets, event catering, or "хурим/хүлээн авалтын цэс", share the Event Menu page link and, if useful, summarize the tier prices above. These are also available as quick-reply buttons under "🎉 Хурим/Зоог" in the chat menu.
 
 ## Assistant behavior
 

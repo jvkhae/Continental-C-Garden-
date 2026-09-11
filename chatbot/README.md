@@ -14,17 +14,17 @@ listed there.
     button / persistent menu), it's handled deterministically in
     `handle_payload()` — no Claude call, so it's instant and free. This
     covers the category menu (🍽 Ресторан / 🎉 Хурим‑Зоог / 🛏 Өрөө /
-    📞 Холбоо барих) and the **Banquets & Events** sub-menu, which links
-    straight to the three flipbook menus (Хүлээн авалт / Хуримын цэс /
-    Ресторан цэс).
+    📞 Холбоо барих) and the **Banquets & Events** sub-menu, which links to
+    the Event Menu slideshow (`event-menu.html`, 3 set-menu tiers) and the
+    restaurant flipbook menu.
   - Otherwise it's free text — sent to Claude with `knowledge.md` as the
     system prompt, and the reply always comes back with the main category
     quick replies attached so the guest can jump back into the button flow.
 - Conversation history is kept in memory per sender — fine for a single
   process/low volume. For production scale (multiple workers, restarts),
   swap `_conversations` in `app.py` for Redis or a small DB table.
-- Menu links (flipbook URLs) live in `MENU_LINKS` in `app.py` — update them
-  there when the wedding/reception/restaurant flipbooks change.
+- Menu links live in `MENU_LINKS` in `app.py` — update them there when the
+  event/restaurant menus change.
 
 ## 1. Local setup
 
@@ -94,8 +94,8 @@ quick-reply flow.
 
 Message your Facebook Page directly. Try tapping the category buttons
 (Ресторан / Хурим‑Зоог / Өрөө / Холбоо барих), then Хурим/Зоог → each of the
-3 sub-menus. Also try free text: "What are your hours?", "Хуримын цэс
-харуулаач", "How do I book a room?".
+sub-menus. Also try free text: "What are your hours?", "Хурим захиалах
+менюгээ харуулаач", "How do I book a room?".
 
 ## Keeping it accurate
 
