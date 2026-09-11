@@ -4,7 +4,7 @@ A single-page, mobile-friendly **food menu website** plus a **QR code** that lin
 
 > The menu currently has **3 placeholder dishes**. Send me the real food details anytime and I'll swap them in — the QR code does **not** change.
 
-Also includes a general hotel **landing page** (`promo.html`) and a **social media marketing pack** (`social/`) — see below.
+Also includes a general hotel **landing page** (`promo.html`), a **social media marketing pack** (`social/`), and an **AI Messenger chatbot** (`chatbot/`) — see below.
 
 ## What's here
 
@@ -17,6 +17,7 @@ Also includes a general hotel **landing page** (`promo.html`) and a **social med
 | `generate_qr.py` | Regenerates the QR codes |
 | `social/marketing-plan.md` | Social media strategy — goals, pillars, posting cadence, sample calendar |
 | `social/captions.md` | Ready-to-post captions/copy per content pillar, with hashtags |
+| `chatbot/` | Claude-powered Facebook Messenger chatbot for the Page (see `chatbot/README.md` to deploy) |
 | `.nojekyll` | Tells GitHub Pages to serve files as-is |
 
 Facebook poster + 3 square social post graphics are published as an editable design canvas (see `social/marketing-plan.md` for the link) — open it to export PNGs for posting.
