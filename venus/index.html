@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>venus_event-menu</title>
+  <meta name="description" content="Venus Restaurant Event Menu — three set menus for weddings, receptions and private events." />
+  <meta name="theme-color" content="#241019" />
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <link rel="apple-touch-icon" href="favicon.png" />
+
+  <meta property="og:title" content="Venus Event Menu" />
+  <meta property="og:description" content="Three set menus for weddings, receptions and private events at Venus Restaurant." />
+  <meta property="og:image" content="favicon.png" />
+  <meta property="og:type" content="website" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #241019;
+      --bg-deep: #170a10;
+      --card: #301620;
+      --ink: #f5e9e6;
+      --muted: #bb9a9b;
+      --rose: #cf9a6c;
+      --rose-dim: #7f5c42;
+      --line: rgba(207,154,108,0.3);
+    }
+    body {
+      background: var(--bg);
+      background-image: radial-gradient(circle at 50% -10%, #3a1a26 0%, var(--bg) 55%, var(--bg-deep) 100%);
+      color: var(--ink);
+      font-family: 'Inter', system-ui, sans-serif;
+      min-height: 100vh;
+    }
+    .wrap {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: clamp(28px, 6vw, 56px) 20px 40px;
+    }
+    header { text-align: center; margin-bottom: clamp(24px, 5vw, 40px); }
+    .eyebrow {
+      font-size: 12px;
+      letter-spacing: .32em;
+      text-transform: uppercase;
+      color: var(--rose);
+      font-weight: 600;
+    }
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 600;
+      font-style: italic;
+      font-size: clamp(2.6rem, 7.5vw, 3.6rem);
+      margin: 10px 0 8px;
+      text-wrap: balance;
+    }
+    .sub { color: var(--muted); font-size: 14px; max-width: 42ch; margin: 0 auto; }
+
+    .viewer { position: relative; display: flex; align-items: center; justify-content: center; gap: 10px; }
+    .frame {
+      position: relative; flex: 1; min-width: 0;
+      background: var(--card); border: 1px solid var(--line); padding: 10px;
+      box-shadow: 0 30px 60px -20px rgba(0,0,0,.6);
+    }
+    .frame-inner { position: relative; width: 100%; aspect-ratio: 1415 / 2000; overflow: hidden; }
+    .frame-inner img {
+      position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain;
+      opacity: 0; transition: opacity .45s ease; display: block;
+    }
+    .frame-inner img.active { opacity: 1; }
+
+    .arrow {
+      flex: 0 0 auto; width: 40px; height: 40px; border-radius: 50%;
+      border: 1px solid var(--line); background: rgba(207,154,108,0.08); color: var(--ink);
+      display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 18px; line-height: 1;
+    }
+    .arrow:hover { background: rgba(207,154,108,0.18); }
+    .arrow:focus-visible { outline: 2px solid var(--rose); outline-offset: 2px; }
+    @media (max-width: 560px) {
+      .arrow { position: absolute; top: 50%; transform: translateY(-50%); z-index: 2; }
+      .arrow.prev { left: 4px; }
+      .arrow.next { right: 4px; }
+    }
+
+    .tabs { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin-top: 22px; }
+    .tab {
+      font-family: 'Inter', sans-serif; font-size: 12.5px; font-weight: 600; letter-spacing: .02em;
+      color: var(--muted); background: transparent; border: 1px solid var(--line); padding: 9px 16px; cursor: pointer;
+      transition: color .2s ease, border-color .2s ease, background .2s ease;
+    }
+    .tab:focus-visible { outline: 2px solid var(--rose); outline-offset: 2px; }
+    .tab.active { color: var(--bg-deep); background: var(--rose); border-color: var(--rose); }
+    .tab:not(.active):hover { border-color: var(--rose-dim); color: var(--ink); }
+
+    footer { text-align: center; margin-top: clamp(28px, 6vw, 44px); color: var(--muted); font-size: 12px; letter-spacing: .03em; }
+    footer .div { color: var(--rose); margin: 0 8px; }
+
+    @media (prefers-reduced-motion: reduce) { .frame-inner img { transition: none; } }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="eyebrow">Venus Restaurant</div>
+      <h1>Event Menu</h1>
+      <p class="sub">Three set menus for weddings, receptions &amp; private events</p>
+    </header>
+
+    <div class="viewer">
+      <button class="arrow prev" id="prevBtn" aria-label="Previous menu">&#8249;</button>
+      <div class="frame">
+        <div class="frame-inner" id="frameInner">
+          <img src="menu-250000.webp" alt="Event Menu — 250,000 MNT package: crispy duck orange salad, royal skirt beef steak or salmon fillet, red velvet cake" class="active" data-index="0">
+          <img src="menu-180000.webp" alt="Event Menu — 180,000 MNT package: milk skin vegetable salad, pork belly or beef steak, Spartak cake" data-index="1">
+          <img src="menu-150000.webp" alt="Event Menu — 150,000 MNT package: Caesar salad, miso chicken or meatloaf, poached pear" data-index="2">
+        </div>
+      </div>
+      <button class="arrow next" id="nextBtn" aria-label="Next menu">&#8250;</button>
+    </div>
+
+    <div class="tabs" id="tabs">
+      <button class="tab active" data-index="0">250,000 ₮</button>
+      <button class="tab" data-index="1">180,000 ₮</button>
+      <button class="tab" data-index="2">150,000 ₮</button>
+    </div>
+
+    <footer>
+      Venus <span class="div">&#9670;</span> All prices exclude 12% tax
+    </footer>
+  </div>
+
+  <script>
+  (function () {
+    var images = Array.from(document.querySelectorAll('.frame-inner img'));
+    var tabs = Array.from(document.querySelectorAll('.tab'));
+    var prevBtn = document.getElementById('prevBtn');
+    var nextBtn = document.getElementById('nextBtn');
+    var current = 0;
+    var total = images.length;
+    var timer = null;
+
+    function show(index) {
+      current = (index + total) % total;
+      images.forEach(function (img, i) { img.classList.toggle('active', i === current); });
+      tabs.forEach(function (tab, i) { tab.classList.toggle('active', i === current); });
+    }
+    function restart() {
+      clearInterval(timer);
+      timer = setInterval(function () { show(current + 1); }, 7000);
+    }
+    prevBtn.addEventListener('click', function () { show(current - 1); restart(); });
+    nextBtn.addEventListener('click', function () { show(current + 1); restart(); });
+    tabs.forEach(function (tab) {
+      tab.addEventListener('click', function () { show(parseInt(tab.dataset.index, 10)); restart(); });
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowLeft') { show(current - 1); restart(); }
+      if (e.key === 'ArrowRight') { show(current + 1); restart(); }
+    });
+    restart();
+  })();
+  </script>
+</body>
+</html>
