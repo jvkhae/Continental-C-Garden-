@@ -55,14 +55,14 @@ availability, or policy details. Reply in the language the guest writes in.
 
 # --- Category button flow -------------------------------------------------
 # Deterministic (no Claude call) so navigation is instant and always correct.
-# Payload -> menu URL. Reception menu is our own event-menu.html slideshow
-# (3 set-menu tiers); the restaurant menu stays a flipbook.
+# Payload -> menu URL. Reception/event menu is hosted by Venus Restaurant
+# (a separate venue, not C Garden); the restaurant menu stays a flipbook.
 MENU_LINKS = {
-    "MENU_RECEPTION": "https://jvkhae.github.io/continental-c-garden-/event-menu.html",
+    "MENU_RECEPTION": "https://claude.ai/artifact/Akrh3C848QhgW63hihcXYz",
     "MENU_RESTAURANT_FLIP": "https://heyzine.com/flip-book/504989dbda.html#page/10",
 }
 MENU_LABELS = {
-    "MENU_RECEPTION": "Хүлээн авалт, зоог (Event Menu)",
+    "MENU_RECEPTION": "Venus Event Menu (Хурим, хүлээн авалт)",
     "MENU_RESTAURANT_FLIP": "Ресторан цэс",
 }
 

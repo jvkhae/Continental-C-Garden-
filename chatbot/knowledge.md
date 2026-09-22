@@ -22,18 +22,19 @@ The chatbot answers only from this file (plus greetings/small talk). Keep it upd
   - Chocolate Lava Cake — $8 — Warm molten centre, vanilla bean ice cream
 - Prices in USD. Guests should inform staff of any allergies.
 
-## Banquets & Events (Хурим, хүлээн авалт)
+## Banquets & Events (Хурим, хүлээн авалт) — hosted by Venus Restaurant
 
-- Event Menu page (3 set-menu tiers, slideshow): https://jvkhae.github.io/continental-c-garden-/event-menu.html
-- Ресторан цэс (Restaurant menu, flipbook): https://heyzine.com/flip-book/504989dbda.html#page/10
+Weddings/receptions/private-event catering are hosted by **Venus Restaurant**, a separate venue (not C Garden). Event Menu page (3 set-menu tiers, slideshow): https://claude.ai/artifact/Akrh3C848QhgW63hihcXYz
 
-Event Menu tiers (all prices exclude 12% tax):
+Ресторан цэс (C Garden's own restaurant menu, flipbook): https://heyzine.com/flip-book/504989dbda.html#page/10
+
+Venus Event Menu tiers (all prices exclude 12% tax):
 
 - **250,000 MNT** — Salad: crispy duck orange salad with cranberry sauce. Main: royal skirt beef steak with delica pumpkin mash and unagi sauce, or salmon fillet in fresh sauce. Dessert: red velvet cake. Beverages: alkaline water, Orgiluun/Terelj/Selenge, red or white wine, Heineken/Hoegarden, Soyombo vodka, milk tea.
 - **180,000 MNT** — Salad: milk skin vegetable salad. Main: slow-roasted crispy pork belly with honey mustard sauce, or royal skirt beef steak with delica pumpkin mash and unagi sauce. Dessert: Spartak cake. Beverages: alkaline water, Orgiluun/Terelj/Selenge, red or white wine, Heineken/Altangobi, Evok vodka, milk tea.
 - **150,000 MNT** — Salad: Caesar salad. Main: Japanese-style miso-marinated chicken, or classic-style meatloaf with thyme red wine sauce and mashed potato. Dessert: poached pear. Beverages: aqua crystal water, Orgiluun/Terelj/Selenge, red or white wine, Heineken/Altangobi, Eden vodka, milk tea.
 
-If a guest asks about weddings, banquets, event catering, or "хурим/хүлээн авалтын цэс", share the Event Menu page link and, if useful, summarize the tier prices above. These are also available as quick-reply buttons under "🎉 Хурим/Зоог" in the chat menu.
+If a guest asks about weddings, banquets, event catering, or "хурим/хүлээн авалтын цэс", explain it's hosted by Venus Restaurant and share the Event Menu page link above (and, if useful, summarize the tier prices). These are also available as quick-reply buttons under "🎉 Хурим/Зоог" in the chat menu.
 
 ## Assistant behavior
 
