@@ -29,6 +29,14 @@
     will-change: transform;
     z-index: 0;
   }
+  .bg-photo.two {
+    background-image:
+      linear-gradient(180deg, var(--scrim-top) 0%, rgba(23,10,16,.45) 35%, var(--scrim-bottom) 100%),
+      url('hotel-hall.jpg');
+    background-position: center 42%;
+    opacity: 0;
+    transition: opacity .1s linear;
+  }
 
   .content { position: relative; z-index: 1; }
 
@@ -110,7 +118,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
-<div class="bg-photo" id="bgPhoto"></div>
+<div class="bg-photo" id="bgPhoto1"></div>
+<div class="bg-photo two" id="bgPhoto2"></div>
 
 <div class="content">
   <div class="wrap">
@@ -151,15 +160,28 @@
 
 <script>
 (function () {
-  var bg = document.getElementById('bgPhoto');
+  var bg1 = document.getElementById('bgPhoto1');
+  var bg2 = document.getElementById('bgPhoto2');
   var ticking = false;
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   function update() {
     ticking = false;
-    if (reduceMotion) return;
     var y = window.scrollY || window.pageYOffset;
-    bg.style.transform = 'translateY(' + (-y * 0.3) + 'px)';
+
+    if (!reduceMotion) {
+      var shift = 'translateY(' + (-y * 0.3) + 'px)';
+      bg1.style.transform = shift;
+      bg2.style.transform = shift;
+    }
+
+    var docH = document.documentElement.scrollHeight - window.innerHeight;
+    var progress = docH > 0 ? y / docH : 0;
+    // Crossfade to the second photo across the middle third of the page
+    // (roughly Menu 2), so it's fully switched by Menu 3.
+    var fade = (progress - 0.32) / 0.28;
+    fade = Math.max(0, Math.min(1, fade));
+    bg2.style.opacity = fade;
   }
   function onScroll() {
     if (!ticking) {
@@ -168,6 +190,7 @@
     }
   }
   window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll, { passive: true });
   update();
 })();
 </script>
