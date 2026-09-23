@@ -61,25 +61,23 @@
 
   .menu-block { text-align: center; }
   .menu-label {
-    display: inline-flex;
+    display: flex;
     align-items: baseline;
+    justify-content: center;
     gap: 10px;
-    margin-bottom: 16px;
+    margin-bottom: 14px;
   }
   .menu-label .n {
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-    font-size: 1.5rem;
-    color: var(--rose);
+    font-family: 'Inter', system-ui, sans-serif;
+    font-weight: 600;
+    font-size: 1.05rem;
+    letter-spacing: .02em;
+    color: #ffffff;
   }
   .menu-label .price {
-    font-size: 12.5px;
-    letter-spacing: .1em;
-    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: .06em;
     color: var(--muted);
-    border: 1px solid var(--rose-dim);
-    padding: 5px 12px;
-    border-radius: 999px;
   }
 
   .frame {
@@ -161,7 +159,7 @@
     ticking = false;
     if (reduceMotion) return;
     var y = window.scrollY || window.pageYOffset;
-    bg.style.transform = 'translateY(' + (y * 0.22) + 'px)';
+    bg.style.transform = 'translateY(' + (-y * 0.3) + 'px)';
   }
   function onScroll() {
     if (!ticking) {
