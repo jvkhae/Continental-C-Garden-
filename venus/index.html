@@ -158,13 +158,9 @@
 (function () {
   var bg2 = document.getElementById('bgPhoto2');
   var menu2 = document.getElementById('menu2');
-  var ticking = false;
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  function update() {
-    ticking = false;
-    if (reduceMotion) { bg2.style.transform = 'translateY(0)'; return; }
-
+  function targetProgress() {
     var vh = window.innerHeight;
     var top = menu2.getBoundingClientRect().top;
     // Reveal window: starts when Menu 2 is still a bit below the fold,
@@ -173,18 +169,26 @@
     var startAt = vh * 0.85;
     var endAt = vh * 0.15;
     var progress = (startAt - top) / (startAt - endAt);
-    progress = Math.max(0, Math.min(1, progress));
+    return Math.max(0, Math.min(1, progress));
+  }
 
-    bg2.style.transform = 'translateY(' + ((1 - progress) * vh) + 'px)';
+  if (reduceMotion) {
+    bg2.style.transform = 'translateY(' + ((1 - targetProgress()) * window.innerHeight) + 'px)';
+    return;
   }
-  function onScroll() {
-    if (!ticking) {
-      window.requestAnimationFrame(update);
-      ticking = true;
-    }
+
+  // Ease the visible position toward the scroll-driven target every frame,
+  // instead of snapping straight to it — this smooths out mouse-wheel/
+  // trackpad jumps into one fluid, slightly trailing motion.
+  var current = targetProgress();
+
+  function loop() {
+    var target = targetProgress();
+    current += (target - current) * 0.08;
+    if (Math.abs(target - current) < 0.0005) current = target;
+    bg2.style.transform = 'translateY(' + ((1 - current) * window.innerHeight) + 'px)';
+    window.requestAnimationFrame(loop);
   }
-  window.addEventListener('scroll', onScroll, { passive: true });
-  window.addEventListener('resize', onScroll, { passive: true });
-  update();
+  window.requestAnimationFrame(loop);
 })();
 </script>
